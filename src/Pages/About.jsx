@@ -214,7 +214,7 @@ const AboutPage = () => {
               data-aos="fade-right"
               data-aos-duration="1500"
             >
-             Lulusan Teknik Jaringan Komputer dan Telekomunikasi, serta Mahasiswa Informatika di Universitas Islam Indonesia yang memiliki ketertarikan besar dalam pengembangan UI/UX Design, dan Front-End. Saya berfokus pada menciptakan pengalaman digital yang menarik dan selalu berusaha memberi solusi terbaik dalam setiap proyek yang saya kerjakan.
+            Seorang Siswa lulusan Teknik jaringan komputer dan telekomunikasi, dan juga Mahasiswa Informatika di UII yang menekuni pada bidang Frontend. Saya berfokus  menciptakan pengalaman digital yang menarik dan selalu berusaha memberi solusi terbaik dalam setiap proyek yang saya kerjakan.
             </p>
 
                {/* Quote Section */}
@@ -240,7 +240,7 @@ const AboutPage = () => {
       </div>
 
             <div className="flex flex-col lg:flex-row items-center lg:items-start gap-4 lg:gap-4 lg:px-0 w-full">
-              <a href="https://drive.google.com/drive/folders/1BOm51Grsabb3zj6Xk27K-iRwI1zITcpo" className="w-full lg:w-auto">
+              <a href="https://drive.google.com/file/d/1cTkTTxR5VFykbGczXV62wof0hWWHpllL/view?usp=sharing" className="w-full lg:w-auto">
               <button 
                 data-aos="fade-up"
                 data-aos-duration="800"
