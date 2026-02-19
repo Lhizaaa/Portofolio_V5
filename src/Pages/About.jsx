@@ -214,7 +214,7 @@ const AboutPage = () => {
               data-aos="fade-right"
               data-aos-duration="1500"
             >
-            Seorang Siswa lulusan Teknik jaringan komputer dan telekomunikasi, dan juga Mahasiswa Informatika di UII yang menekuni pada bidang Frontend. Saya berfokus  menciptakan pengalaman digital yang menarik dan selalu berusaha memberi solusi terbaik dalam setiap proyek yang saya kerjakan.
+            Seorang Siswa lulusan Teknik jaringan komputer dan telekomunikasi, dan juga Mahasiswa Informatika di UII yang menekuni pada bidang Frontend. Saya berfokus menciptakan pengalaman digital yang menarik dan selalu berusaha memberi solusi terbaik pada setiap proyek yang saya kerjakan.
             </p>
 
                {/* Quote Section */}
