@@ -32,8 +32,8 @@ const LandingPage = ({ showWelcome, setShowWelcome }) => {
           <ContactPage />
           <footer>
             <center>
-              <hr className="my-3 border-gray-400 opacity-15 sm:mx-auto lg:my-6 text-center" />
-              <span className="block text-sm pb-4 text-gray-500 text-center dark:text-gray-400">
+              <hr className="my-2 sm:my-3 lg:my-6 border-gray-400 opacity-15 sm:mx-auto text-center" />
+              <span className="block text-xs sm:text-sm pb-3 sm:pb-4 text-gray-500 text-center dark:text-gray-400">
                 © 2026{" "}
                 <a href="www.lhizaa.my.id" className="hover:underline">
                   LhizaaR™
@@ -53,8 +53,8 @@ const ProjectPageLayout = () => (
     <ProjectDetails />
     <footer>
       <center>
-        <hr className="my-3 border-gray-400 opacity-15 sm:mx-auto lg:my-6 text-center" />
-        <span className="block text-sm pb-4 text-gray-500 text-center dark:text-gray-400">
+        <hr className="my-2 sm:my-3 lg:my-6 border-gray-400 opacity-15 sm:mx-auto text-center" />
+        <span className="block text-xs sm:text-sm pb-3 sm:pb-4 text-gray-500 text-center dark:text-gray-400">
           © 2026{" "}
           <a href="www.lhizaa.my.id" className="hover:underline">
             LhizaaR™

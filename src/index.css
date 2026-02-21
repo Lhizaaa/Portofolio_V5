@@ -107,6 +107,88 @@ body {
    animation: shine 1.5s ease-in-out infinite;
  }
 
+ /* Mobile and Tablet Responsive Utilities */
+ @media (max-width: 640px) {
+   body {
+     font-size: 14px;
+   }
+   
+   h1 {
+     font-size: 1.5rem;
+   }
+   
+   h2 {
+     font-size: 1.25rem;
+   }
+   
+   h3 {
+     font-size: 1rem;
+   }
+   
+   /* Reduce animations on mobile for better performance */
+   .animate-blob,
+   .animate-bounce-slow,
+   .animate-pulse-slow,
+   .animate-spin-slower {
+     animation-duration: 6s;
+   }
+   
+   /* Optimize touch targets for mobile */
+   button {
+     min-height: 44px;
+     min-width: 44px;
+   }
+   
+   input,
+   textarea {
+     font-size: 16px; /* Prevent zoom on iOS */
+   }
+ }
+
+ /* Tablet specific optimizations */
+ @media (min-width: 641px) and (max-width: 1024px) {
+   h1 {
+     font-size: 2rem;
+   }
+   
+   h2 {
+     font-size: 1.75rem;
+   }
+   
+   h3 {
+     font-size: 1.25rem;
+   }
+ }
+
+ /* Desktop optimizations */
+ @media (min-width: 1025px) {
+   /* Smooth transitions on desktop */
+   * {
+     transition: smooth;
+   }
+ }
+
+ /* Prevent layout shift on mobile */
+ @media (max-width: 768px) {
+   body {
+     overflow-x: hidden;
+   }
+   
+   /* Ensure cards don't overflow */
+   .group {
+     overflow: hidden;
+   }
+ }
+
+ /* Improve touch interactions */
+ @media (hover: none) {
+   button:hover,
+   a:hover,
+   .group:hover {
+     /* Disable hover effects on touch devices */
+     transform: none;
+   }
+ }
   
 /*   @media (prefers-color-scheme: dark) {
 	::-webkit-scrollbar-track {

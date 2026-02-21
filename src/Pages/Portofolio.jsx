@@ -194,10 +194,10 @@ export default function FullWidthTabs() {
 
   // Sisa dari komponen (return statement) tidak ada perubahan
   return (
-    <div className="md:px-[10%] px-[5%] w-full sm:mt-0 mt-[3rem] bg-[#030014] overflow-hidden" id="Portofolio">
+    <div className="px-3 sm:px-[5%] md:px-[10%] w-full sm:mt-0 mt-6 bg-[#030014] overflow-hidden" id="Portofolio">
       {/* Header section - unchanged */}
-      <div className="text-center pb-10" data-aos="fade-up" data-aos-duration="1000">
-        <h2 className="inline-block text-3xl md:text-5xl font-bold text-center mx-auto text-transparent bg-clip-text bg-gradient-to-r from-[#3b82f6] to-[#0ea5e9]">
+      <div className="text-center pb-6 sm:pb-10" data-aos="fade-up" data-aos-duration="1000">
+        <h2 className="inline-block text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-center mx-auto text-transparent bg-clip-text bg-gradient-to-r from-[#3b82f6] to-[#0ea5e9]">
           <span style={{
             color: '#3b82f6',
             backgroundImage: 'linear-gradient(45deg, #3b82f6 10%, #0ea5e9 93%)',
@@ -208,7 +208,7 @@ export default function FullWidthTabs() {
             Portfolio Showcase
           </span>
         </h2>
-        <p className="text-slate-400 max-w-2xl mx-auto text-sm md:text-base mt-2">
+        <p className="text-slate-400 max-w-2xl mx-auto text-xs sm:text-sm md:text-base mt-2 px-2">
           Explore my journey through projects, certifications, and technical expertise. 
           Each section represents a milestone in my continuous learning path.
         </p>
@@ -222,7 +222,7 @@ export default function FullWidthTabs() {
           sx={{
             bgcolor: "transparent",
             border: "1px solid rgba(255, 255, 255, 0.1)",
-            borderRadius: "20px",
+            borderRadius: { xs: "12px", md: "20px" },
             position: "relative",
             overflow: "hidden",
             "&::before": {
@@ -237,7 +237,7 @@ export default function FullWidthTabs() {
               zIndex: 0,
             },
           }}
-          className="md:px-4"
+          className="px-2 sm:px-4"
         >
           {/* Tabs remain unchanged */}
           <Tabs
@@ -247,16 +247,16 @@ export default function FullWidthTabs() {
             indicatorColor="secondary"
             variant="fullWidth"
             sx={{
-              minHeight: "70px",
+              minHeight: { xs: "50px", sm: "70px" },
               "& .MuiTab-root": {
-                fontSize: { xs: "0.9rem", md: "1rem" },
+                fontSize: { xs: "0.75rem", sm: "0.9rem", md: "1rem" },
                 fontWeight: "600",
                 color: "#94a3b8",
                 textTransform: "none",
                 transition: "all 0.4s cubic-bezier(0.4, 0, 0.2, 1)",
-                padding: "20px 0",
+                padding: { xs: "12px 0", sm: "20px 0" },
                 zIndex: 1,
-                margin: "8px",
+                margin: { xs: "4px", sm: "8px" },
                 borderRadius: "12px",
                 "&:hover": {
                   color: "#ffffff",
@@ -279,22 +279,22 @@ export default function FullWidthTabs() {
                 height: 0,
               },
               "& .MuiTabs-flexContainer": {
-                gap: "8px",
+                gap: { xs: "4px", sm: "8px" },
               },
             }}
           >
             <Tab
-              icon={<Code className="mb-2 w-5 h-5 transition-all duration-300" />}
+              icon={<Code className="mb-2 w-4 h-4 sm:w-5 sm:h-5 transition-all duration-300" />}
               label="Projects"
               {...a11yProps(0)}
             />
             <Tab
-              icon={<Award className="mb-2 w-5 h-5 transition-all duration-300" />}
+              icon={<Award className="mb-2 w-4 h-4 sm:w-5 sm:h-5 transition-all duration-300" />}
               label="Certificates"
               {...a11yProps(1)}
             />
             <Tab
-              icon={<Boxes className="mb-2 w-5 h-5 transition-all duration-300" />}
+              icon={<Boxes className="mb-2 w-4 h-4 sm:w-5 sm:h-5 transition-all duration-300" />}
               label="Tech Stack"
               {...a11yProps(2)}
             />
@@ -308,7 +308,7 @@ export default function FullWidthTabs() {
         >
           <TabPanel value={value} index={0} dir={theme.direction}>
             <div className="container mx-auto flex justify-center items-center overflow-hidden">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 2xl:grid-cols-3 gap-5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 2xl:grid-cols-3 gap-3 sm:gap-5">
                 {displayedProjects.map((project, index) => (
                   <div
                     key={project.id || index}
@@ -327,7 +327,7 @@ export default function FullWidthTabs() {
               </div>
             </div>
             {projects.length > initialItems && (
-              <div className="mt-6 w-full flex justify-start">
+              <div className="mt-4 sm:mt-6 w-full flex justify-start">
                 <ToggleButton
                   onClick={() => toggleShowMore('projects')}
                   isShowingMore={showAllProjects}
@@ -338,7 +338,7 @@ export default function FullWidthTabs() {
 
           <TabPanel value={value} index={1} dir={theme.direction}>
             <div className="container mx-auto flex justify-center items-center overflow-hidden">
-              <div className="grid grid-cols-1 md:grid-cols-3 md:gap-5 gap-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 sm:gap-5">
                 {displayedCertificates.map((certificate, index) => (
                   <div
                     key={certificate.id || index}
@@ -351,7 +351,7 @@ export default function FullWidthTabs() {
               </div>
             </div>
             {certificates.length > initialItems && (
-              <div className="mt-6 w-full flex justify-start">
+              <div className="mt-4 sm:mt-6 w-full flex justify-start">
                 <ToggleButton
                   onClick={() => toggleShowMore('certificates')}
                   isShowingMore={showAllCertificates}
@@ -362,7 +362,7 @@ export default function FullWidthTabs() {
 
           <TabPanel value={value} index={2} dir={theme.direction}>
             <div className="container mx-auto flex justify-center items-center overflow-hidden pb-[5%]">
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 lg:gap-8 gap-5">
+              <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-3 sm:gap-4 lg:gap-8">
                 {techStacks.map((stack, index) => (
                   <div
                     key={index}
