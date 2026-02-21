@@ -158,7 +158,7 @@ const AboutPage = () => {
   const statsData = useMemo(() => [
     {
       icon: Code,
-      color: "from-[#3b82f6] to-[#0ea5e9]",
+      color: "from-[#6366f1] to-[#a855f7]",
       value: totalProjects,
       label: "Total Projects",
       description: "Innovative web solutions crafted",
@@ -174,7 +174,7 @@ const AboutPage = () => {
     },
     {
       icon: Globe,
-      color: "from-[#3b82f6] to-[#0ea5e9]",
+      color: "from-[#6366f1] to-[#a855f7]",
       value: YearExperience,
       label: "Years of Experience",
       description: "Continuous learning journey",
