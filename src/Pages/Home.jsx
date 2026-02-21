@@ -8,11 +8,10 @@ const StatusBadge = memo(() => (
   <div className="inline-block animate-float lg:mx-0" data-aos="zoom-in" data-aos-delay="400">
     <div className="relative group">
       <div className="absolute -inset-0.5 bg-gradient-to-r from-[#3b82f6] to-[#0ea5e9] rounded-full blur opacity-30 group-hover:opacity-50 transition duration-1000"></div>
-      <div className="relative px-2 sm:px-3 md:px-4 py-1.5 sm:py-2 rounded-full bg-black/40 backdrop-blur-xl border border-white/10">
-        <span className="bg-gradient-to-r from-[#3b82f6] to-[#0ea5e9] text-transparent bg-clip-text text-xs sm:text-sm md:text-base font-medium flex items-center">
-          <Sparkles className="w-3 h-3 sm:w-4 sm:h-4 mr-1.5 sm:mr-2 text-blue-400" />
-          <span className="hidden sm:inline">Ready to Innovate</span>
-          <span className="sm:hidden">Ready</span>
+      <div className="relative px-3 sm:px-4 py-2 rounded-full bg-black/40 backdrop-blur-xl border border-white/10">
+        <span className="bg-gradient-to-r from-[#3b82f6] to-[#0ea5e9] text-transparent bg-clip-text sm:text-sm text-[0.7rem] font-medium flex items-center">
+          <Sparkles className="sm:w-4 sm:h-4 w-3 h-3 mr-2 text-blue-400" />
+          Ready to Innovate
         </span>
       </div>
     </div>
@@ -21,7 +20,7 @@ const StatusBadge = memo(() => (
 
 const MainTitle = memo(() => (
   <div className="space-y-2" data-aos="fade-up" data-aos-delay="600">
-    <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl font-bold tracking-tight">
+    <h1 className="text-5xl sm:text-6xl md:text-6xl lg:text-6xl xl:text-7xl font-bold tracking-tight">
       <span className="relative inline-block">
         <span className="absolute -inset-2 bg-gradient-to-r from-[#3b82f6] to-[#0ea5e9] blur-2xl opacity-20"></span>
         <span className="relative bg-gradient-to-r from-white via-blue-100 to-cyan-200 bg-clip-text text-transparent">
@@ -29,7 +28,7 @@ const MainTitle = memo(() => (
         </span>
       </span>
       <br />
-      <span className="relative inline-block mt-1 sm:mt-2">
+      <span className="relative inline-block mt-2">
         <span className="absolute -inset-2 bg-gradient-to-r from-[#3b82f6] to-[#0ea5e9] blur-2xl opacity-20"></span>
         <span className="relative bg-gradient-to-r from-[#3b82f6] to-[#0ea5e9] bg-clip-text text-transparent">
           Developer
@@ -142,48 +141,48 @@ const Home = () => {
   }, [handleTyping]);
 
   return (
-    <div className="min-h-screen bg-[#030014] overflow-hidden px-3 sm:px-[5%] lg:px-[10%]" id="Home">
+    <div className="min-h-screen bg-[#030014] overflow-hidden px-[5%] sm:px-[5%] lg:px-[10%]" id="Home">
       <div className={`relative z-10 transition-all duration-1000 ${isLoaded ? "opacity-100" : "opacity-0"}`}>
         <div className="container mx-auto min-h-screen">
-          <div className="flex flex-col lg:flex-row items-center justify-center min-h-screen md:justify-between gap-4 sm:gap-8 md:gap-12 lg:gap-20">
+          <div className="flex flex-col lg:flex-row items-center justify-center h-screen md:justify-between gap-0 sm:gap-12 lg:gap-20">
             {/* Left Column */}
-            <div className="w-full lg:w-1/2 space-y-4 sm:space-y-6 md:space-y-8 text-center sm:text-left lg:text-left order-1 lg:order-1 lg:mt-0"
+            <div className="w-full lg:w-1/2 space-y-6 sm:space-y-8 text-left lg:text-left order-1 lg:order-1 lg:mt-0"
               data-aos="fade-right"
               data-aos-delay="200">
-              <div className="space-y-3 sm:space-y-4 md:space-y-6">
+              <div className="space-y-4 sm:space-y-6">
                 <StatusBadge />
                 <MainTitle />
 
                 {/* Typing Effect */}
-                <div className="h-6 sm:h-7 md:h-8 flex items-center" data-aos="fade-up" data-aos-delay="800">
-                  <span className="text-base sm:text-lg md:text-xl lg:text-2xl bg-gradient-to-r from-gray-100 to-gray-300 bg-clip-text text-transparent font-light">
+                <div className="h-8 flex items-center" data-aos="fade-up" data-aos-delay="800">
+                  <span className="text-xl md:text-2xl bg-gradient-to-r from-gray-100 to-gray-300 bg-clip-text text-transparent font-light">
                     {text}
                   </span>
-                  <span className="w-[2px] sm:w-[3px] h-5 sm:h-6 md:h-6 bg-gradient-to-t from-[#3b82f6] to-[#0ea5e9] ml-1 animate-blink"></span>
+                  <span className="w-[3px] h-6 bg-gradient-to-t from-[#3b82f6] to-[#0ea5e9] ml-1 animate-blink"></span>
                 </div>
 
                 {/* Description */}
-                <p className="text-xs sm:text-sm md:text-base lg:text-lg text-gray-400 max-w-xl leading-relaxed font-light"
+                <p className="text-base md:text-lg text-gray-400 max-w-xl leading-relaxed font-light"
                   data-aos="fade-up"
                   data-aos-delay="1000">
                   Menciptakan Website Yang Inovatif, Fungsional, dan User-Friendly untuk Solusi Digital.
                 </p>
 
                 {/* Tech Stack */}
-                <div className="flex flex-wrap gap-2 sm:gap-3 justify-start sm:justify-start" data-aos="fade-up" data-aos-delay="1200">
+                <div className="flex flex-wrap gap-3 justify-start" data-aos="fade-up" data-aos-delay="1200">
                   {TECH_STACK.map((tech, index) => (
                     <TechStack key={index} tech={tech} />
                   ))}
                 </div>
 
                 {/* CTA Buttons */}
-                <div className="flex flex-col sm:flex-row gap-2 sm:gap-3 w-full justify-start" data-aos="fade-up" data-aos-delay="1400">
+                <div className="flex flex-row gap-3 w-full justify-start" data-aos="fade-up" data-aos-delay="1400">
                   <CTAButton href="#Portofolio" text="Projects" icon={ExternalLink} />
                   <CTAButton href="#Contact" text="Contact" icon={Mail} />
                 </div>
 
                 {/* Social Links */}
-                <div className="flex gap-2 sm:gap-4 justify-start" data-aos="fade-up" data-aos-delay="1600">
+                <div className="hidden sm:flex gap-4 justify-start" data-aos="fade-up" data-aos-delay="1600">
                   {SOCIAL_LINKS.map((social, index) => (
                     <SocialLink key={index} {...social} />
                   ))}
@@ -192,7 +191,7 @@ const Home = () => {
             </div>
 
             {/* Right Column - WebM Video */}
-            <div className="w-full py-4 sm:py-6 md:py-0 lg:w-1/2 h-[200px] sm:h-[300px] md:h-[400px] lg:h-[600px] xl:h-[750px] relative flex items-center justify-center order-2 lg:order-2 mt-2 sm:mt-4 md:mt-0"
+            <div className="w-full py-0 md:py-[10%] sm:py-0 lg:w-1/2 h-[260px] sm:h-[400px] lg:h-[600px] xl:h-[750px] relative flex items-center justify-center order-2 lg:order-2  mt-5 sm:mt-0"
               onMouseEnter={() => setIsHovering(true)}
               onMouseLeave={() => setIsHovering(false)}
               data-aos="fade-left"

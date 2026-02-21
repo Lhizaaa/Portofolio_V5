@@ -5,10 +5,10 @@ import 'aos/dist/aos.css'
 
 // Memoized Components
 const Header = memo(() => (
-  <div className="text-center lg:mb-8 mb-4 px-3 sm:px-[5%]">
+  <div className="text-center lg:mb-8 mb-2 px-[5%]">
     <div className="inline-block relative group">
       <h2 
-        className="text-3xl sm:text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#3b82f6] to-[#0ea5e9]" 
+        className="text-4xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-[#3b82f6] to-[#0ea5e9]" 
         data-aos="zoom-in-up"
         data-aos-duration="600"
       >
@@ -16,19 +16,19 @@ const Header = memo(() => (
       </h2>
     </div>
     <p 
-      className="mt-2 text-gray-400 max-w-2xl mx-auto text-sm sm:text-base md:text-lg flex flex-wrap items-center justify-center gap-2"
+      className="mt-2 text-gray-400 max-w-2xl mx-auto text-base sm:text-lg flex items-center justify-center gap-2"
       data-aos="zoom-in-up"
       data-aos-duration="800"
     >
-      <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-blue-400" />
-      <span className="text-xs sm:text-sm md:text-base">Transforming ideas into digital experiences</span>
-      <Sparkles className="w-4 h-4 sm:w-5 sm:h-5 text-blue-400" />
+      <Sparkles className="w-5 h-5 text-blue-400" />
+      Transforming ideas into digital experiences
+      <Sparkles className="w-5 h-5 text-blue-400" />
     </p>
   </div>
 ));
 
 const ProfileImage = memo(() => (
-  <div className="flex justify-center sm:justify-end items-center p-4 sm:p-6 md:p-12 md:py-0 md:pb-0">
+  <div className="flex justify-end items-center sm:p-12 sm:py-0 sm:pb-0 p-0 py-2 pb-2">
     <div 
       className="relative group" 
       data-aos="fade-up"
@@ -42,7 +42,7 @@ const ProfileImage = memo(() => (
       </div>
 
       <div className="relative">
-        <div className="w-52 h-52 sm:w-64 sm:h-64 md:w-72 md:h-72 lg:w-80 lg:h-80 rounded-full overflow-hidden shadow-[0_0_40px_rgba(120,119,198,0.3)] transform transition-all duration-700 group-hover:scale-105">
+        <div className="w-72 h-72 sm:w-80 sm:h-80 rounded-full overflow-hidden shadow-[0_0_40px_rgba(120,119,198,0.3)] transform transition-all duration-700 group-hover:scale-105">
           <div className="absolute inset-0 border-4 border-white/20 rounded-full z-20 transition-all duration-700 group-hover:border-white/40 group-hover:scale-105" />
           
           {/* Optimized overlay effects - disabled on mobile */}
@@ -69,13 +69,13 @@ const ProfileImage = memo(() => (
 ));
 
 const StatCard = memo(({ icon: Icon, color, value, label, description, animation }) => (
-  <div data-aos={animation} data-aos-duration={1300} className="relative group w-full">
-    <div className="relative z-10 bg-gray-900/50 backdrop-blur-lg rounded-xl sm:rounded-2xl p-4 sm:p-6 border border-white/10 overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl h-full flex flex-col justify-between">
+  <div data-aos={animation} data-aos-duration={1300} className="relative group">
+    <div className="relative z-10 bg-gray-900/50 backdrop-blur-lg rounded-2xl p-6 border border-white/10 overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl h-full flex flex-col justify-between">
       <div className={`absolute -z-10 inset-0 bg-gradient-to-br ${color} opacity-10 group-hover:opacity-20 transition-opacity duration-300`}></div>
       
-      <div className="flex items-center justify-between mb-3 sm:mb-4">
-        <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full flex items-center justify-center bg-white/10 transition-transform group-hover:rotate-6">
-          <Icon className="w-6 h-6 sm:w-8 sm:h-8 text-white" />
+      <div className="flex items-center justify-between mb-4">
+        <div className="w-16 h-16 rounded-full flex items-center justify-center bg-white/10 transition-transform group-hover:rotate-6">
+          <Icon className="w-8 h-8 text-white" />
         </div>
         <span 
           className="text-4xl font-bold text-white"
@@ -184,16 +184,16 @@ const AboutPage = () => {
 
   return (
     <div
-      className="h-auto pb-[10%] text-white overflow-hidden px-3 sm:px-[5%] lg:px-[10%] mt-6 sm:mt-10 md:mt-0" 
+      className="h-auto pb-[10%] text-white overflow-hidden px-[5%] sm:px-[5%] lg:px-[10%] mt-10 sm-mt-0" 
       id="About"
     >
       <Header />
 
-      <div className="w-full mx-auto pt-6 sm:pt-8 md:pt-12 relative">
-        <div className="flex flex-col-reverse lg:grid lg:grid-cols-2 gap-6 sm:gap-10 lg:gap-16 items-center">
-          <div className="space-y-4 sm:space-y-6 text-center lg:text-left">
+      <div className="w-full mx-auto pt-8 sm:pt-12 relative">
+        <div className="flex flex-col-reverse lg:grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+          <div className="space-y-6 text-center lg:text-left">
             <h2 
-              className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold"
+              className="text-3xl sm:text-4xl lg:text-5xl font-bold"
               data-aos="fade-right"
               data-aos-duration="1000"
             >
@@ -201,7 +201,7 @@ const AboutPage = () => {
                 Hello, I'm
               </span>
               <span 
-                className="block mt-1 sm:mt-2 text-gray-200"
+                className="block mt-2 text-gray-200"
                 data-aos="fade-right"
                 data-aos-duration="1300"
               >
@@ -210,7 +210,7 @@ const AboutPage = () => {
             </h2>
             
             <p 
-              className="text-xs sm:text-sm md:text-base lg:text-lg text-gray-400 leading-relaxed text-justify pb-2 sm:pb-4"
+              className="text-base sm:text-lg lg:text-xl text-gray-400 leading-relaxed text-justify pb-4 sm:pb-0"
               data-aos="fade-right"
               data-aos-duration="1500"
             >
@@ -219,7 +219,7 @@ const AboutPage = () => {
 
                {/* Quote Section */}
       <div 
-        className="relative bg-gradient-to-br from-[#3b82f6]/5 via-transparent to-[#0ea5e9]/5 border border-gradient-to-r border-[#3b82f6]/30 rounded-lg sm:rounded-2xl p-3 sm:p-4 my-4 sm:my-6 backdrop-blur-md shadow-2xl overflow-hidden"
+        className="relative bg-gradient-to-br from-[#3b82f6]/5 via-transparent to-[#0ea5e9]/5 border border-gradient-to-r border-[#3b82f6]/30 rounded-2xl p-4 my-6 backdrop-blur-md shadow-2xl overflow-hidden"
         data-aos="fade-up"
         data-aos-duration="1700"
       >
@@ -234,26 +234,26 @@ const AboutPage = () => {
           </svg>
         </div>
         
-        <blockquote className="text-gray-300 text-center lg:text-left italic font-medium text-xs sm:text-sm relative z-10 pl-4 sm:pl-6">
+        <blockquote className="text-gray-300 text-center lg:text-left italic font-medium text-sm relative z-10 pl-6">
           "Leveraging AI as a professional tool, not a replacement."
         </blockquote>
       </div>
 
-            <div className="flex flex-col sm:flex-row lg:flex-row items-center lg:items-start gap-2 sm:gap-4 lg:gap-4 lg:px-0 w-full">
-              <a href="https://drive.google.com/file/d/1cTkTTxR5VFykbGczXV62wof0hWWHpllL/view?usp=sharing" className="w-full sm:w-auto lg:w-auto">
+            <div className="flex flex-col lg:flex-row items-center lg:items-start gap-4 lg:gap-4 lg:px-0 w-full">
+              <a href="https://drive.google.com/file/d/1cTkTTxR5VFykbGczXV62wof0hWWHpllL/view?usp=sharing" className="w-full lg:w-auto">
               <button 
                 data-aos="fade-up"
                 data-aos-duration="800"
-                className="w-full sm:w-auto lg:w-auto px-4 sm:px-6 py-2 sm:py-3 rounded-lg bg-gradient-to-r from-[#3b82f6] to-[#0ea5e9] text-white font-medium transition-all duration-300 hover:scale-105 flex items-center justify-center lg:justify-start gap-2 shadow-lg hover:shadow-xl text-sm sm:text-base"
+                className="w-full lg:w-auto sm:px-6 py-2 sm:py-3 rounded-lg bg-gradient-to-r from-[#3b82f6] to-[#0ea5e9] text-white font-medium transition-all duration-300 hover:scale-105 flex items-center justify-center lg:justify-start gap-2 shadow-lg hover:shadow-xl "
               >
                 <FileText className="w-4 h-4 sm:w-5 sm:h-5" /> Download CV
               </button>
               </a>
-              <a href="#Portofolio" className="w-full sm:w-auto lg:w-auto">
+              <a href="#Portofolio" className="w-full lg:w-auto">
               <button 
                 data-aos="fade-up"
                 data-aos-duration="1000"
-                className="w-full sm:w-auto lg:w-auto px-4 sm:px-6 py-2 sm:py-3 rounded-lg border border-[#0ea5e9]/50 text-[#0ea5e9] font-medium transition-all duration-300 hover:scale-105 flex items-center justify-center lg:justify-start gap-2 hover:bg-[#0ea5e9]/10 text-sm sm:text-base"
+                className="w-full lg:w-auto sm:px-6 py-2 sm:py-3 rounded-lg border border-[#0ea5e9]/50 text-[#0ea5e9] font-medium transition-all duration-300 hover:scale-105 flex items-center justify-center lg:justify-start gap-2 hover:bg-[#0ea5e9]/10 "
               >
                 <Code className="w-4 h-4 sm:w-5 sm:h-5" /> View Projects
               </button>
@@ -265,7 +265,7 @@ const AboutPage = () => {
         </div>
 
         <a href="#Portofolio">
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mt-10 sm:mt-16 cursor-pointer">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16 cursor-pointer">
             {statsData.map((stat) => (
               <StatCard key={stat.label} {...stat} />
             ))}

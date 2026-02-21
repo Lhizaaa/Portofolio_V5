@@ -75,14 +75,14 @@ const Navbar = () => {
                     : "bg-transparent"
             }`}
         >
-            <div className="mx-auto px-3 sm:px-[5%] lg:px-[10%]">
-                <div className="flex items-center justify-between h-14 sm:h-16">
+            <div className="mx-auto px-[5%] sm:px-[5%] lg:px-[10%]">
+                <div className="flex items-center justify-between h-16">
                     {/* Logo */}
                     <div className="flex-shrink-0">
                         <a
                             href="#Home"
                             onClick={(e) => scrollToSection(e, "#Home")}
-                            className="text-base sm:text-lg md:text-xl font-bold bg-gradient-to-r from-[#0ea5e9] to-[#3b82f6] bg-clip-text text-transparent"
+                            className="text-xl font-bold bg-gradient-to-r from-[#0ea5e9] to-[#3b82f6] bg-clip-text text-transparent"
                         >
                             Lhizaa
                         </a>
@@ -90,13 +90,13 @@ const Navbar = () => {
         
                     {/* Desktop Navigation */}
                     <div className="hidden md:block">
-                        <div className="ml-6 lg:ml-8 flex items-center space-x-4 lg:space-x-8">
+                        <div className="ml-8 flex items-center space-x-8">
                             {navItems.map((item) => (
                                 <a
                                     key={item.label}
                                     href={item.href}
                                     onClick={(e) => scrollToSection(e, item.href)}
-                                    className="group relative px-1 py-2 text-xs lg:text-sm font-medium"
+                                    className="group relative px-1 py-2 text-sm font-medium"
                                 >
                                     <span
                                         className={`relative z-10 transition-colors duration-300 ${
@@ -123,14 +123,14 @@ const Navbar = () => {
                     <div className="md:hidden">
                         <button
                             onClick={() => setIsOpen(!isOpen)}
-                            className={`relative p-1.5 sm:p-2 text-[#e2d3fd] hover:text-white transition-transform duration-300 ease-in-out transform ${
+                            className={`relative p-2 text-[#e2d3fd] hover:text-white transition-transform duration-300 ease-in-out transform ${
                                 isOpen ? "rotate-90 scale-125" : "rotate-0 scale-100"
                             }`}
                         >
                             {isOpen ? (
-                                <X className="w-5 h-5 sm:w-6 sm:h-6" />
+                                <X className="w-6 h-6" />
                             ) : (
-                                <Menu className="w-5 h-5 sm:w-6 sm:h-6" />
+                                <Menu className="w-6 h-6" />
                             )}
                         </button>
                     </div>
@@ -145,13 +145,13 @@ const Navbar = () => {
                         : "max-h-0 opacity-0 overflow-hidden"
                 }`}
             >
-                <div className="px-3 sm:px-4 py-4 sm:py-6 space-y-3 sm:space-y-4">
+                <div className="px-4 py-6 space-y-4">
                     {navItems.map((item, index) => (
                         <a
                             key={item.label}
                             href={item.href}
                             onClick={(e) => scrollToSection(e, item.href)}
-                            className={`block px-3 sm:px-4 py-2 sm:py-3 text-base sm:text-lg font-medium transition-all duration-300 ease ${
+                            className={`block px-4 py-3 text-lg font-medium transition-all duration-300 ease ${
                                 activeSection === item.href.substring(1)
                                     ? "bg-gradient-to-r from-[#3b82f6] to-[#0ea5e9] bg-clip-text text-transparent font-semibold"
                                     : "text-[#e2d3fd] hover:text-white"

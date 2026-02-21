@@ -24,10 +24,10 @@ const CardProject = ({ Img, Title, Description, Link: ProjectLink, id }) => {
   return (
     <div className="group relative w-full">
             
-      <div className="relative overflow-hidden rounded-lg sm:rounded-xl bg-gradient-to-br from-slate-900/90 to-slate-800/90 backdrop-blur-lg border border-white/10 shadow-2xl transition-all duration-300 hover:shadow-purple-500/20">
+      <div className="relative overflow-hidden rounded-xl bg-gradient-to-br from-slate-900/90 to-slate-800/90 backdrop-blur-lg border border-white/10 shadow-2xl transition-all duration-300 hover:shadow-purple-500/20">
         <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 via-purple-500/10 to-pink-500/10 opacity-50 group-hover:opacity-70 transition-opacity duration-300"></div>
     
-        <div className="relative p-3 sm:p-5 z-10">
+        <div className="relative p-5 z-10">
           <div className="relative overflow-hidden rounded-lg">
             <img
               src={Img}
@@ -36,29 +36,29 @@ const CardProject = ({ Img, Title, Description, Link: ProjectLink, id }) => {
             />
           </div>
           
-          <div className="mt-2 sm:mt-4 space-y-2 sm:space-y-3">
-            <h3 className="text-base sm:text-lg md:text-xl font-semibold bg-gradient-to-r from-blue-200 via-purple-200 to-pink-200 bg-clip-text text-transparent line-clamp-1 sm:line-clamp-2">
+          <div className="mt-4 space-y-3">
+            <h3 className="text-xl font-semibold bg-gradient-to-r from-blue-200 via-purple-200 to-pink-200 bg-clip-text text-transparent">
               {Title}
             </h3>
             
-            <p className="text-gray-300/80 text-xs sm:text-sm leading-relaxed line-clamp-2">
+            <p className="text-gray-300/80 text-sm leading-relaxed line-clamp-2">
               {Description}
             </p>
             
-            <div className="pt-2 sm:pt-4 flex flex-col sm:flex-row items-center justify-between gap-2">
+            <div className="pt-4 flex items-center justify-between">
               {ProjectLink ? (
                 <a
                 href={ProjectLink || "#"}
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={handleLiveDemo}
-                  className="inline-flex items-center space-x-1 sm:space-x-2 text-blue-400 hover:text-blue-300 transition-colors duration-200 text-xs sm:text-sm"
+                  className="inline-flex items-center space-x-2 text-blue-400 hover:text-blue-300 transition-colors duration-200"
                 >
-                  <span className="font-medium">Live Demo</span>
-                  <ExternalLink className="w-3 h-3 sm:w-4 sm:h-4" />
+                  <span className="text-sm font-medium">Live Demo</span>
+                  <ExternalLink className="w-4 h-4" />
                 </a>
               ) : (
-                <span className="text-gray-500 text-xs sm:text-sm">Demo Not Available</span>
+                <span className="text-gray-500 text-sm">Demo Not Available</span>
               )}
               
      
@@ -67,14 +67,13 @@ const CardProject = ({ Img, Title, Description, Link: ProjectLink, id }) => {
                 <Link
                   to={`/project/${id}`}
                   onClick={handleDetails}
-                  className="inline-flex items-center space-x-1 sm:space-x-2 px-2 sm:px-4 py-1.5 sm:py-2 rounded-lg bg-white/5 hover:bg-white/10 text-white/90 transition-all duration-200 hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-purple-500/50 text-xs sm:text-sm"
+                  className="inline-flex items-center space-x-2 px-4 py-2 rounded-lg bg-white/5 hover:bg-white/10 text-white/90 transition-all duration-200 hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-purple-500/50"
                 >
-                  <span className="font-medium hidden sm:inline">Details</span>
-                  <span className="font-medium sm:hidden">More</span>
-                  <ArrowRight className="w-3 h-3 sm:w-4 sm:h-4" />
+                  <span className="text-sm font-medium">Details</span>
+                  <ArrowRight className="w-4 h-4" />
                 </Link>
               ) : (
-                <span className="text-gray-500 text-xs sm:text-sm">Details Not Available</span>
+                <span className="text-gray-500 text-sm">Details Not Available</span>
               )}
             </div>
           </div>
