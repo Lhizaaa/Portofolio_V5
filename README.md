@@ -239,9 +239,6 @@ If you have any questions or need help with the setup, feel free to reach out\!
 
 **Luqman Hakim Ar-Razi**
 
-  - Website: [https://www.lhizaa.my.id/](https://www.lhizaa.my.id/)
-  - GitHub: [EkiZR](https://github.com/EkiZR)
-
 -----
 
 Thanks to
