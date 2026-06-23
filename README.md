@@ -6,7 +6,7 @@ Let me introduce myself, I'm **Luqman Hakim Ar-Razi**. On this occasion, I'd lik
 
 ## 🚀 Live Demo
 
-**Website Link:** [https://www.lhizaa.my.id/](https://www.lhizaa.my.id/)
+**Website Link:** [lhizaadev.vercel.app](lhizaadev.vercel.app)
 
 ## 🛠️ Tech Stack
 
@@ -238,9 +238,6 @@ We would appreciate it if you decide to use this project. Please include proper 
 If you have any questions or need help with the setup, feel free to reach out\!
 
 **Luqman Hakim Ar-Razi**
-
-  - Website: [https://www.lhizaa.my.id/](https://www.lhizaa.my.id/)
-  - GitHub: [EkiZR](https://github.com/EkiZR)
 
 -----
 
