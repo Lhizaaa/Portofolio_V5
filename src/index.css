@@ -3,21 +3,53 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ===========================================================
+   Monochrome + Emerald theme tokens
+   Light is the default :root, dark overrides via .dark class.
+   Each value is space-separated RGB channels so Tailwind's
+   `rgb(var(--token) / <alpha-value>)` opacity utilities work.
+   =========================================================== */
+:root {
+	--c-base: 250 250 250; /* zinc-50  — page background */
+	--c-surface: 255 255 255; /* white  — cards */
+	--c-surface-2: 244 244 245; /* zinc-100 — nested surfaces */
+	--c-line: 228 228 231; /* zinc-200 — borders */
+	--c-fg: 24 24 27; /* zinc-900 — primary text */
+	--c-muted: 113 113 122; /* zinc-500 — secondary text */
+	--c-accent: 16 185 129; /* emerald-500 */
+	--c-accent-strong: 5 150 105; /* emerald-600 */
+	--c-accent-fg: 255 255 255; /* text on accent */
+}
+
+.dark {
+	--c-base: 9 9 11; /* zinc-950 */
+	--c-surface: 24 24 27; /* zinc-900 */
+	--c-surface-2: 39 39 42; /* zinc-800 */
+	--c-line: 39 39 42; /* zinc-800 */
+	--c-fg: 244 244 245; /* zinc-100 */
+	--c-muted: 161 161 170; /* zinc-400 */
+	--c-accent: 52 211 153; /* emerald-400 */
+	--c-accent-strong: 16 185 129; /* emerald-500 */
+	--c-accent-fg: 9 9 11; /* near-black text on accent */
+}
+
 * {
 	margin: 0;
 	padding: 0;
 	box-sizing: border-box;
-	font-family: "Poppins", serif;
+	font-family: "Poppins", sans-serif;
 	scroll-behavior: smooth;
 	scrollbar-width: thin;
-	scrollbar-color: rgba(59, 130, 246, 0.3) rgba(12, 5, 53, 0.356);
+	scrollbar-color: rgb(var(--c-accent) / 0.4) transparent;
 }
 
 html,
 body {
 	overflow-x: hidden;
-	background: #030014;
+	background: rgb(var(--c-base));
+	color: rgb(var(--c-fg));
 	scroll-behavior: smooth !important;
+	transition: background-color 0.4s ease, color 0.4s ease;
 }
 
 @keyframes blob {
@@ -48,43 +80,28 @@ body {
 	height: 8px;
 	background-color: transparent;
   }
-  
+
   ::-webkit-scrollbar-track {
-	background: rgba(3, 0, 20, 0.4);
-	backdrop-filter: blur(8px);
-	-webkit-backdrop-filter: blur(8px);
-	border: 1px solid rgba(59, 130, 246, 0.1);
+	background: rgb(var(--c-surface-2) / 0.4);
+	border: 1px solid rgb(var(--c-line) / 0.5);
   }
-  
+
   ::-webkit-scrollbar-thumb {
-	background: rgba(59, 130, 246, 0.3);
-	backdrop-filter: blur(4px);
-	-webkit-backdrop-filter: blur(4px);
+	background: rgb(var(--c-accent) / 0.4);
 	border-radius: 20px;
-	border: 1px solid rgba(255, 255, 255, 0.1);
-	box-shadow: 
-	  inset 0 0 20px rgba(14, 165, 233, 0.2),
-	  0 0 10px rgba(59, 130, 246, 0.2);
+	border: 1px solid rgb(var(--c-accent) / 0.2);
 	transition: all 0.3s ease;
   }
-  
+
   ::-webkit-scrollbar-thumb:hover {
-	background: rgba(59, 130, 246, 0.5);
-	border: 1px solid rgba(14, 165, 233, 0.3);
-	box-shadow: 
-	  inset 0 0 30px rgba(14, 165, 233, 0.3),
-	  0 0 15px rgba(59, 130, 246, 0.3);
+	background: rgb(var(--c-accent) / 0.7);
   }
-  
+
   /* When scrollbar is in active/clicked state */
   ::-webkit-scrollbar-thumb:active {
-	background: rgba(59, 130, 246, 0.6);
-	border: 1px solid rgba(14, 165, 233, 0.4);
-	box-shadow: 
-	  inset 0 0 40px rgba(14, 165, 233, 0.4),
-	  0 0 20px rgba(59, 130, 246, 0.4);
+	background: rgb(var(--c-accent));
   }
-  
+
   ::-webkit-scrollbar-corner {
 	background: transparent;
   }

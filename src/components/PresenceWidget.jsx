@@ -122,7 +122,7 @@ export default function PresenceWidget() {
           return (
             <div key={act.key} className="group relative ">
               {/* Glass Card */}
-              <div className={`relative backdrop-blur-md bg-gradient-to-br ${colors.bg} rounded-xl border ${colors.border} ${colors.glow} shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all duration-300`}>
+              <div className={`relative backdrop-blur-md bg-surface bg-gradient-to-br ${colors.bg} rounded-xl border ${colors.border} ${colors.glow} shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all duration-300`}>
                 <div className="p-3 flex items-center gap-2.5">
                   
                   {/* Icon/Image */}
@@ -172,10 +172,10 @@ export default function PresenceWidget() {
                       </span>
                     </div>
                     
-                    <h3 className="text-white font-bold text-sm truncate mb-0.5">
+                    <h3 className="text-fg font-bold text-sm truncate mb-0.5">
                       {act.title}
                     </h3>
-                    <p className="text-white/60 text-xs truncate">
+                    <p className="text-muted text-xs truncate">
                       {act.subtitle}
                     </p>
                   </div>

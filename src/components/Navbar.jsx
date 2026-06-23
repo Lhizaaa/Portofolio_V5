@@ -1,5 +1,23 @@
 import React, { useState, useEffect } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Sun, Moon } from "lucide-react";
+import useTheme from "./useTheme";
+
+const ThemeToggle = ({ className = "" }) => {
+    const { theme, toggleTheme } = useTheme();
+    return (
+        <button
+            onClick={toggleTheme}
+            aria-label="Toggle color theme"
+            className={`relative inline-flex items-center justify-center w-9 h-9 rounded-lg border border-line bg-surface-2 text-fg hover:text-accent hover:border-accent/40 transition-colors duration-300 ${className}`}
+        >
+            {theme === "dark" ? (
+                <Sun className="w-[18px] h-[18px]" />
+            ) : (
+                <Moon className="w-[18px] h-[18px]" />
+            )}
+        </button>
+    );
+};
 
 const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -69,10 +87,10 @@ const Navbar = () => {
         <nav
             className={`fixed w-full top-0 z-50 transition-all duration-500 ${
                 isOpen
-                    ? "bg-[#030014]"
+                    ? "bg-base border-b border-line"
                     : scrolled
-                    ? "bg-[#030014]/50 backdrop-blur-xl"
-                    : "bg-transparent"
+                    ? "bg-base/70 backdrop-blur-xl border-b border-line"
+                    : "bg-transparent border-b border-transparent"
             }`}
         >
             <div className="mx-auto px-[5%] sm:px-[5%] lg:px-[10%]">
@@ -82,12 +100,12 @@ const Navbar = () => {
                         <a
                             href="#Home"
                             onClick={(e) => scrollToSection(e, "#Home")}
-                            className="text-xl font-bold bg-gradient-to-r from-[#0ea5e9] to-[#3b82f6] bg-clip-text text-transparent"
+                            className="text-xl font-bold text-fg"
                         >
-                            Lhizaa
+                            Lhizaa<span className="text-accent">.</span>
                         </a>
                     </div>
-        
+
                     {/* Desktop Navigation */}
                     <div className="hidden md:block">
                         <div className="ml-8 flex items-center space-x-8">
@@ -101,14 +119,14 @@ const Navbar = () => {
                                     <span
                                         className={`relative z-10 transition-colors duration-300 ${
                                             activeSection === item.href.substring(1)
-                                                ? "bg-gradient-to-r from-[#3b82f6] to-[#0ea5e9] bg-clip-text text-transparent font-semibold"
-                                                : "text-[#e2d3fd] group-hover:text-white"
+                                                ? "text-accent font-semibold"
+                                                : "text-muted group-hover:text-fg"
                                         }`}
                                     >
                                         {item.label}
                                     </span>
                                     <span
-                                        className={`absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-[#3b82f6] to-[#0ea5e9] transform origin-left transition-transform duration-300 ${
+                                        className={`absolute bottom-0 left-0 w-full h-0.5 bg-accent transform origin-left transition-transform duration-300 ${
                                             activeSection === item.href.substring(1)
                                                 ? "scale-x-100"
                                                 : "scale-x-0 group-hover:scale-x-100"
@@ -116,14 +134,16 @@ const Navbar = () => {
                                     />
                                 </a>
                             ))}
+                            <ThemeToggle />
                         </div>
                     </div>
-        
+
                     {/* Mobile Menu Button */}
-                    <div className="md:hidden">
+                    <div className="md:hidden flex items-center gap-2">
+                        <ThemeToggle />
                         <button
                             onClick={() => setIsOpen(!isOpen)}
-                            className={`relative p-2 text-[#e2d3fd] hover:text-white transition-transform duration-300 ease-in-out transform ${
+                            className={`relative p-2 text-muted hover:text-fg transition-transform duration-300 ease-in-out transform ${
                                 isOpen ? "rotate-90 scale-125" : "rotate-0 scale-100"
                             }`}
                         >
@@ -153,8 +173,8 @@ const Navbar = () => {
                             onClick={(e) => scrollToSection(e, item.href)}
                             className={`block px-4 py-3 text-lg font-medium transition-all duration-300 ease ${
                                 activeSection === item.href.substring(1)
-                                    ? "bg-gradient-to-r from-[#3b82f6] to-[#0ea5e9] bg-clip-text text-transparent font-semibold"
-                                    : "text-[#e2d3fd] hover:text-white"
+                                    ? "text-accent font-semibold"
+                                    : "text-muted hover:text-fg"
                             }`}
                             style={{
                                 transitionDelay: `${index * 100}ms`,
