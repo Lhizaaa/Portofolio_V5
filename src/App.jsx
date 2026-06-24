@@ -1,20 +1,16 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import React, { useState, Suspense, lazy } from 'react';
+import React, { useState } from 'react';
 import "./index.css";
 import Home from "./Pages/Home";
+import About from "./Pages/About";
 import AnimatedBackground from "./components/Background";
 import Navbar from "./components/Navbar";
-import LoadingScreen from "./components/LoadingScreen";
-
-// Below-the-fold sections and separate routes are code-split so the initial
-// load only ships the hero (Home) + navbar; heavy deps (MUI, Supabase,
-// SweetAlert, framer-motion) load lazily as the user scrolls or navigates.
-const IntroOverlay = lazy(() => import("./components/IntroOverlay"));
-const About = lazy(() => import("./Pages/About"));
-const Portofolio = lazy(() => import("./Pages/Portofolio"));
-const ContactPage = lazy(() => import("./Pages/Contact"));
-const ProjectDetails = lazy(() => import("./components/ProjectDetail"));
-const NotFoundPage = lazy(() => import("./Pages/404"));
+import Portofolio from "./Pages/Portofolio";
+import ContactPage from "./Pages/Contact";
+import ProjectDetails from "./components/ProjectDetail";
+import WelcomeScreen from "./Pages/WelcomeScreen";
+import { AnimatePresence } from 'framer-motion';
+import NotFoundPage from "./Pages/404";
 
 const Footer = () => (
   <footer>
@@ -34,26 +30,20 @@ const Footer = () => (
 const LandingPage = ({ showWelcome, setShowWelcome }) => {
   return (
     <>
-      <Suspense fallback={<div className="fixed inset-0 z-[100] bg-base" />}>
-        <IntroOverlay show={showWelcome} onDone={() => setShowWelcome(false)} />
-      </Suspense>
+      <AnimatePresence mode="wait">
+        {showWelcome && (
+          <WelcomeScreen onLoadingComplete={() => setShowWelcome(false)} />
+        )}
+      </AnimatePresence>
 
       {!showWelcome && (
         <>
           <Navbar />
           <AnimatedBackground />
           <Home />
-          {/* Each lazy section streams in independently; fallback={null}
-              avoids a jarring loader for content below the fold. */}
-          <Suspense fallback={null}>
-            <About />
-          </Suspense>
-          <Suspense fallback={null}>
-            <Portofolio />
-          </Suspense>
-          <Suspense fallback={null}>
-            <ContactPage />
-          </Suspense>
+          <About />
+          <Portofolio />
+          <ContactPage />
           <Footer />
         </>
       )}
@@ -62,10 +52,10 @@ const LandingPage = ({ showWelcome, setShowWelcome }) => {
 };
 
 const ProjectPageLayout = () => (
-  <Suspense fallback={<LoadingScreen />}>
+  <>
     <ProjectDetails />
     <Footer />
-  </Suspense>
+  </>
 );
 
 function App() {
@@ -76,7 +66,7 @@ function App() {
       <Routes>
         <Route path="/" element={<LandingPage showWelcome={showWelcome} setShowWelcome={setShowWelcome} />} />
         <Route path="/project/:id" element={<ProjectPageLayout />} />
-        <Route path="*" element={<Suspense fallback={<LoadingScreen />}><NotFoundPage /></Suspense>} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>
   );
