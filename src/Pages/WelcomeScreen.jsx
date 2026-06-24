@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Code2, Github, Globe, User } from 'lucide-react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import useLanguage from '../components/useLanguage';
 
 const TypewriterEffect = ({ text }) => {
   const [displayText, setDisplayText] = useState('');
@@ -31,22 +32,25 @@ const TypewriterEffect = ({ text }) => {
 
 const BackgroundEffect = () => (
   <div className="absolute inset-0 overflow-hidden">
-    <div className="absolute inset-0 bg-accent/10 blur-3xl animate-pulse" />
-    <div className="absolute inset-0 bg-accent/5 blur-2xl animate-float" />
+    <div className="absolute top-12 left-8 w-32 h-32 sm:w-44 sm:h-44 bg-nb-yellow border-2 border-fg rotate-6" />
+    <div className="absolute bottom-12 right-8 w-32 h-32 sm:w-44 sm:h-44 bg-nb-blue border-2 border-fg -rotate-6" />
+    <div className="absolute inset-0 bg-[linear-gradient(to_right,rgb(var(--c-line)/0.12)_2px,transparent_2px),linear-gradient(to_bottom,rgb(var(--c-line)/0.12)_2px,transparent_2px)] bg-[size:48px_48px]" />
   </div>
 );
 
 const IconButton = ({ Icon }) => (
-  <div className="relative group hover:scale-110 transition-transform duration-300">
-    <div className="absolute -inset-2 bg-accent rounded-full blur opacity-20 group-hover:opacity-50 transition duration-300" />
-    <div className="relative p-2 sm:p-3 bg-surface rounded-full border border-line">
-      <Icon className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 text-accent" />
+  <div className="relative group hover:-translate-x-0.5 hover:-translate-y-0.5 transition-transform duration-200">
+    <div className="relative p-2 sm:p-3 bg-surface border-2 border-fg shadow-md">
+      <Icon className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8 text-fg" />
     </div>
   </div>
 );
 
 const WelcomeScreen = ({ onLoadingComplete }) => {
+  const { t } = useLanguage();
   const [isLoading, setIsLoading] = useState(true);
+  const line1 = t("welcome.line1");
+  const line2 = t("welcome.line2");
 
   useEffect(() => {
     AOS.init({
@@ -123,23 +127,22 @@ const WelcomeScreen = ({ onLoadingComplete }) => {
               >
                 <h1 className="text-3xl sm:text-4xl md:text-6xl font-bold space-y-2 sm:space-y-4">
                   <div className="mb-2 sm:mb-4">
-                    <span data-aos="fade-right" data-aos-delay="200" className="inline-block px-2 text-fg">
-                      Welcome
-                    </span>{' '}
-                    <span data-aos="fade-right" data-aos-delay="400" className="inline-block px-2 text-fg">
-                      To
-                    </span>{' '}
-                    <span data-aos="fade-right" data-aos-delay="600" className="inline-block px-2 text-fg">
-                      My
-                    </span>
+                    {line1.map((word, i) => (
+                      <React.Fragment key={i}>
+                        <span data-aos="fade-right" data-aos-delay={200 + i * 200} className="inline-block px-2 text-fg">
+                          {word}
+                        </span>{' '}
+                      </React.Fragment>
+                    ))}
                   </div>
                   <div>
-                    <span data-aos="fade-up" data-aos-delay="800" className="inline-block px-2 text-accent">
-                      Portfolio
-                    </span>{' '}
-                    <span data-aos="fade-up" data-aos-delay="1000" className="inline-block px-2 text-accent">
-                      Website
-                    </span>
+                    {line2.map((word, i) => (
+                      <React.Fragment key={i}>
+                        <span data-aos="fade-up" data-aos-delay={800 + i * 200} className="inline-block px-2 text-accent">
+                          {word}
+                        </span>{' '}
+                      </React.Fragment>
+                    ))}
                   </div>
                 </h1>
               </motion.div>
@@ -157,10 +160,9 @@ const WelcomeScreen = ({ onLoadingComplete }) => {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <div className="absolute inset-0 bg-accent/15 rounded-full blur-md group-hover:blur-lg transition-all duration-300" />
-                  <div className="relative flex items-center gap-2 text-lg sm:text-xl md:text-2xl">
+                  <div className="relative flex items-center gap-2 text-lg sm:text-xl md:text-2xl bg-surface border-2 border-fg shadow-md px-4 py-2">
                     <Globe className="w-4 h-4 sm:w-5 sm:h-5 text-accent" />
-                    <span className="text-accent">
+                    <span className="text-fg font-mono font-bold">
                       <TypewriterEffect text="lhizaadev.vercel.app" />
                     </span>
                   </div>

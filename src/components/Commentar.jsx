@@ -4,9 +4,12 @@ import { MessageCircle, UserCircle2, Loader2, AlertCircle, Send, ImagePlus, X, P
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { supabase } from '../supabase';
+import useLanguage from './useLanguage';
 
 
-const Comment = memo(({ comment, formatDate, index, isPinned = false }) => (
+const Comment = memo(({ comment, formatDate, index, isPinned = false }) => {
+  const { t } = useLanguage();
+  return (
     <div 
         className={`px-4 pt-4 pb-2 rounded-xl border transition-all group hover:shadow-lg hover:-translate-y-0.5 ${
             isPinned
@@ -17,7 +20,7 @@ const Comment = memo(({ comment, formatDate, index, isPinned = false }) => (
         {isPinned && (
             <div className="flex items-center gap-2 mb-3 text-accent">
                 <Pin className="w-4 h-4" />
-                <span className="text-xs font-medium uppercase tracking-wide">Pinned Comment</span>
+                <span className="text-xs font-medium uppercase tracking-wide">{t('comments.pinned')}</span>
             </div>
         )}
         <div className="flex items-start gap-3">
@@ -47,7 +50,7 @@ const Comment = memo(({ comment, formatDate, index, isPinned = false }) => (
                         </h4>
                         {isPinned && (
                             <span className="px-2 py-0.5 text-xs bg-accent/20 text-accent rounded-full">
-                                Admin
+                                {t('comments.admin')}
                             </span>
                         )}
                     </div>
@@ -61,9 +64,11 @@ const Comment = memo(({ comment, formatDate, index, isPinned = false }) => (
             </div>
         </div>
     </div>
-));
+    );
+});
 
 const CommentForm = memo(({ onSubmit, isSubmitting, error }) => {
+    const { t } = useLanguage();
     const [newComment, setNewComment] = useState('');
     const [userName, setUserName] = useState('');
     const [imagePreview, setImagePreview] = useState(null);
@@ -121,14 +126,14 @@ const CommentForm = memo(({ onSubmit, isSubmitting, error }) => {
         <form onSubmit={handleSubmit} className="space-y-6">
             <div className="space-y-2" data-aos="fade-up" data-aos-duration="1000">
                 <label className="block text-sm font-medium text-fg">
-                    Name <span className="text-red-400">*</span>
+                    {t('comments.name')} <span className="text-red-400">*</span>
                 </label>
                 <input
                     type="text"
                     value={userName}
                     onChange={(e) => setUserName(e.target.value)}
                      maxLength={15}
-                    placeholder="Enter your name"
+                    placeholder={t('comments.enterName')}
                     className="w-full p-3 rounded-xl bg-surface-2 border border-line text-fg placeholder-muted focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/20 transition-all"
                     required
                 />
@@ -136,7 +141,7 @@ const CommentForm = memo(({ onSubmit, isSubmitting, error }) => {
 
             <div className="space-y-2" data-aos="fade-up" data-aos-duration="1200">
                 <label className="block text-sm font-medium text-fg">
-                    Message <span className="text-red-400">*</span>
+                    {t('comments.message')} <span className="text-red-400">*</span>
                 </label>
                 <textarea
                     ref={textareaRef}
@@ -144,7 +149,7 @@ const CommentForm = memo(({ onSubmit, isSubmitting, error }) => {
                      maxLength={200}
 
                     onChange={handleTextareaChange}
-                    placeholder="Write your message here..."
+                    placeholder={t('comments.writeMessage')}
                     className="w-full p-4 rounded-xl bg-surface-2 border border-line text-fg placeholder-muted focus:outline-none focus:border-accent focus:ring-2 focus:ring-accent/20 transition-all resize-none min-h-[120px]"
                     required
                 />
@@ -152,7 +157,7 @@ const CommentForm = memo(({ onSubmit, isSubmitting, error }) => {
 
             <div className="space-y-2" data-aos="fade-up" data-aos-duration="1400">
                 <label className="block text-sm font-medium text-fg">
-                    Profile Photo <span className="text-muted">(optional)</span>
+                    {t('comments.profilePhoto')} <span className="text-muted">{t('comments.optional')}</span>
                 </label>
                 <div className="flex items-center gap-4 p-4 bg-surface-2 border border-line rounded-xl">
                     {imagePreview ? (
@@ -172,7 +177,7 @@ const CommentForm = memo(({ onSubmit, isSubmitting, error }) => {
                                 className="flex items-center gap-2 px-4 py-2 rounded-full bg-red-500/20 text-red-400 hover:bg-red-500/30 transition-all group"
                             >
                                 <X className="w-4 h-4" />
-                                <span>Remove Photo</span>
+                                <span>{t('comments.removePhoto')}</span>
                             </button>
                         </div>
                     ) : (
@@ -190,10 +195,10 @@ const CommentForm = memo(({ onSubmit, isSubmitting, error }) => {
                                 className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl bg-accent/15 text-accent hover:bg-accent/25 transition-all border border-dashed border-accent/50 hover:border-accent group"
                             >
                                 <ImagePlus className="w-5 h-5 group-hover:scale-110 transition-transform" />
-                                <span>Choose Profile Photo</span>
+                                <span>{t('comments.choosePhoto')}</span>
                             </button>
                             <p className="text-center text-muted text-sm mt-2">
-                                Max file size: 5MB
+                                {t('comments.maxSize')}
                             </p>
                         </div>
                     )}
@@ -204,19 +209,19 @@ const CommentForm = memo(({ onSubmit, isSubmitting, error }) => {
                 type="submit"
                 disabled={isSubmitting}
                 data-aos="fade-up" data-aos-duration="1000"
-                className="relative w-full h-12 bg-accent rounded-xl font-medium text-accent-fg overflow-hidden group transition-all duration-300 hover:bg-accent-strong hover:scale-[1.02] hover:shadow-lg active:scale-[0.98] disabled:opacity-50 disabled:hover:scale-100 disabled:cursor-not-allowed"
+                className="nb-press relative w-full h-12 bg-nb-blue border-2 border-fg shadow-md font-mono font-bold uppercase tracking-tight text-white overflow-hidden group disabled:opacity-50 disabled:cursor-not-allowed"
             >
                 <div className="absolute inset-0 bg-white/20 translate-y-12 group-hover:translate-y-0 transition-transform duration-300" />
                 <div className="relative flex items-center justify-center gap-2">
                     {isSubmitting ? (
                         <>
                             <Loader2 className="w-4 h-4 animate-spin" />
-                            <span>Posting...</span>
+                            <span>{t('comments.posting')}</span>
                         </>
                     ) : (
                         <>
                             <Send className="w-4 h-4" />
-                            <span>Post Comment</span>
+                            <span>{t('comments.post')}</span>
                         </>
                     )}
                 </div>
@@ -226,6 +231,7 @@ const CommentForm = memo(({ onSubmit, isSubmitting, error }) => {
 });
 
 const Komentar = () => {
+    const { t } = useLanguage();
     const [comments, setComments] = useState([]);
     const [pinnedComment, setPinnedComment] = useState(null);
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -350,12 +356,12 @@ const Komentar = () => {
                 throw error;
             }
         } catch (error) {
-            setError('Failed to post comment. Please try again.');
+            setError(t('comments.failed'));
             console.error('Error adding comment: ', error);
         } finally {
             setIsSubmitting(false);
         }
-    }, [uploadImage]);
+    }, [uploadImage, t]);
 
     const formatDate = useCallback((timestamp) => {
         if (!timestamp) return '';
@@ -388,7 +394,7 @@ const Komentar = () => {
                         <MessageCircle className="w-6 h-6 text-accent" />
                     </div>
                     <h3 className="text-xl font-semibold text-fg">
-                        Comments <span className="text-accent">({totalComments})</span>
+                        {t('comments.title')} <span className="text-accent">({totalComments})</span>
                     </h3>
                 </div>
             </div>
@@ -421,7 +427,7 @@ const Komentar = () => {
                     {comments.length === 0 && !pinnedComment ? (
                         <div className="text-center py-8" data-aos="fade-in">
                             <UserCircle2 className="w-12 h-12 text-accent mx-auto mb-3 opacity-50" />
-                            <p className="text-muted">No comments yet. Start the conversation!</p>
+                            <p className="text-muted">{t('comments.empty')}</p>
                         </div>
                     ) : (
                         comments.map((comment, index) => (

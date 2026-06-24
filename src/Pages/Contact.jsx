@@ -7,8 +7,10 @@ import Swal from "sweetalert2";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import axios from "axios";
+import useLanguage from "../components/useLanguage";
 
 const ContactPage = () => {
+  const { t } = useLanguage();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -35,8 +37,8 @@ const ContactPage = () => {
     setIsSubmitting(true);
 
     Swal.fire({
-      title: 'Mengirim Pesan...',
-      html: 'Harap tunggu selagi kami mengirim pesan Anda',
+      title: t('contact.swalSendingTitle'),
+      html: t('contact.swalSendingText'),
       allowOutsideClick: false,
       didOpen: () => {
         Swal.showLoading();
@@ -64,10 +66,10 @@ const ContactPage = () => {
 
      
       Swal.fire({
-        title: 'Berhasil!',
-        text: 'Pesan Anda telah berhasil terkirim!',
+        title: t('contact.swalSuccessTitle'),
+        text: t('contact.swalSuccessText'),
         icon: 'success',
-        confirmButtonColor: '#10b981',
+        confirmButtonColor: '#2563eb',
         timer: 2000,
         timerProgressBar: true
       });
@@ -81,10 +83,10 @@ const ContactPage = () => {
     } catch (error) {
       if (error.request && error.request.status === 0) {
         Swal.fire({
-          title: 'Berhasil!',
-          text: 'Pesan Anda telah berhasil terkirim!',
+          title: t('contact.swalSuccessTitle'),
+          text: t('contact.swalSuccessText'),
           icon: 'success',
-          confirmButtonColor: '#10b981',
+          confirmButtonColor: '#2563eb',
           timer: 2000,
           timerProgressBar: true
         });
@@ -96,10 +98,10 @@ const ContactPage = () => {
         });
       } else {
         Swal.fire({
-          title: 'Gagal!',
-          text: 'Terjadi kesalahan. Silakan coba lagi nanti.',
+          title: t('contact.swalErrorTitle'),
+          text: t('contact.swalErrorText'),
           icon: 'error',
-          confirmButtonColor: '#3b82f6'
+          confirmButtonColor: '#2563eb'
         });
       }
     } finally {
@@ -115,14 +117,14 @@ const ContactPage = () => {
           data-aos-duration="1000"
           className="inline-block text-3xl md:text-5xl font-bold text-center mx-auto text-fg"
         >
-          Hubungi <span className="text-accent">Saya</span>
+          {t("contact.title")} <span className="inline-block bg-nb-yellow text-black border-2 border-fg shadow-sm px-2">{t("contact.titleHighlight")}</span>
         </h2>
         <p
           data-aos="fade-up"
           data-aos-duration="1100"
           className="text-muted max-w-2xl mx-auto text-sm md:text-base mt-2"
         >
-          Punya pertanyaan? Kirimi saya pesan, dan saya akan segera membalasnya.
+          {t("contact.subtitle")}
         </p>
       </div>
 
@@ -137,10 +139,10 @@ const ContactPage = () => {
             <div className="flex justify-between items-start mb-8">
               <div>
                 <h2 className="text-4xl font-bold mb-3 text-fg">
-                  Hubungi
+                  {t("contact.heading")}
                 </h2>
                 <p className="text-muted">
-                  Ada yang ingin didiskusikan? Kirim saya pesan dan mari kita bicara.
+                  {t("contact.description")}
                 </p>
               </div>
               <Share2 className="w-10 h-10 text-accent opacity-70" />
@@ -159,7 +161,7 @@ const ContactPage = () => {
                 <input
                   type="text"
                   name="name"
-                  placeholder="Nama Anda"
+                  placeholder={t("contact.namePlaceholder")}
                   value={formData.name}
                   onChange={handleChange}
                   disabled={isSubmitting}
@@ -176,7 +178,7 @@ const ContactPage = () => {
                 <input
                   type="email"
                   name="email"
-                  placeholder="Email Anda"
+                  placeholder={t("contact.emailPlaceholder")}
                   value={formData.email}
                   onChange={handleChange}
                   disabled={isSubmitting}
@@ -192,7 +194,7 @@ const ContactPage = () => {
                 <MessageSquare className="absolute left-4 top-4 w-5 h-5 text-muted group-focus-within:text-accent transition-colors" />
                 <textarea
                   name="message"
-                  placeholder="Pesan Anda"
+                  placeholder={t("contact.messagePlaceholder")}
                   value={formData.message}
                   onChange={handleChange}
                   disabled={isSubmitting}
@@ -205,10 +207,10 @@ const ContactPage = () => {
                 data-aos-delay="400"
                 type="submit"
                 disabled={isSubmitting}
-                className="w-full bg-accent text-accent-fg py-4 rounded-xl font-semibold transition-all duration-300 hover:bg-accent-strong hover:scale-[1.02] hover:shadow-lg active:scale-[0.98] flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+                className="nb-press w-full bg-nb-blue text-white py-4 border-2 border-fg shadow-md font-mono font-bold uppercase tracking-tight flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <Send className="w-5 h-5" />
-                {isSubmitting ? 'Mengirim...' : 'Kirim Pesan'}
+                {isSubmitting ? t('contact.sending') : t('contact.send')}
               </button>
             </form>
 

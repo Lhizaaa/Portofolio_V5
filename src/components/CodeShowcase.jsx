@@ -78,7 +78,7 @@ const CodeShowcase = memo(({ isHovering }) => {
 
   return (
     <div
-      className={`relative w-full max-w-[520px] mx-auto rounded-2xl border border-line bg-surface shadow-2xl overflow-hidden transition-transform duration-500 ${
+      className={`relative w-full max-w-[520px] mx-auto border-2 border-fg bg-surface shadow-2xl overflow-hidden transition-transform duration-500 ${
         isHovering ? "scale-[1.02] -rotate-1" : "scale-100"
       }`}
     >
@@ -126,13 +126,6 @@ const CodeShowcase = memo(({ isHovering }) => {
         </span>
       </div>
 
-      {/* Ambient glow */}
-      <div
-        className={`pointer-events-none absolute -inset-px rounded-2xl transition-opacity duration-700 ${
-          isHovering ? "opacity-100" : "opacity-0"
-        }`}
-        style={{ boxShadow: "0 0 60px rgb(var(--c-accent) / 0.25)" }}
-      />
     </div>
   );
 });

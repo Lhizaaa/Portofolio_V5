@@ -2,9 +2,10 @@ import React, { useEffect, memo, useMemo } from "react"
 import { FileText, Code, Award, Globe, ArrowUpRight, Sparkles, UserCheck } from "lucide-react"
 import AOS from 'aos'
 import 'aos/dist/aos.css'
+import useLanguage from "../components/useLanguage"
 
 // Memoized Components
-const Header = memo(() => (
+const Header = memo(({ title, highlight, subtitle }) => (
   <div className="text-center lg:mb-8 mb-2 px-[5%]">
     <div className="inline-block relative group">
       <h2
@@ -12,7 +13,7 @@ const Header = memo(() => (
         data-aos="zoom-in-up"
         data-aos-duration="600"
       >
-        About <span className="text-accent">Me</span>
+        {title} <span className="inline-block bg-nb-yellow text-black border-2 border-fg shadow-sm px-2">{highlight}</span>
       </h2>
     </div>
     <p
@@ -21,7 +22,7 @@ const Header = memo(() => (
       data-aos-duration="800"
     >
       <Sparkles className="w-5 h-5 text-accent" />
-      Transforming ideas into digital experiences
+      {subtitle}
       <Sparkles className="w-5 h-5 text-accent" />
     </p>
   </div>
@@ -35,14 +36,13 @@ const ProfileImage = memo(() => (
       data-aos-duration="1000"
     >
       {/* Optimized gradient backgrounds with reduced complexity for mobile */}
-      <div className="absolute -inset-6 opacity-[30%] z-0 hidden sm:block">
-        <div className="absolute inset-0 bg-accent rounded-full blur-2xl animate-spin-slower" />
-        <div className="absolute inset-0 bg-accent rounded-full blur-2xl animate-pulse-slow opacity-50" />
+      <div className="absolute -inset-3 z-0 hidden sm:block">
+        <div className="absolute inset-0 bg-nb-yellow border-2 border-fg translate-x-4 translate-y-4 rounded-full" />
       </div>
 
       <div className="relative">
-        <div className="w-72 h-72 sm:w-80 sm:h-80 rounded-full overflow-hidden shadow-[0_0_40px_rgb(var(--c-accent)/0.25)] transform transition-all duration-700 group-hover:scale-105">
-          <div className="absolute inset-0 border-4 border-line rounded-full z-20 transition-all duration-700 group-hover:border-accent/40 group-hover:scale-105" />
+        <div className="w-72 h-72 sm:w-80 sm:h-80 rounded-full overflow-hidden border-4 border-fg shadow-[8px_8px_0_0_rgb(var(--c-shadow))] transform transition-all duration-300 group-hover:-translate-x-1 group-hover:-translate-y-1">
+          <div className="absolute inset-0 border-4 border-fg rounded-full z-20 transition-all duration-700 group-hover:scale-105" />
 
           {/* Optimized overlay effects - disabled on mobile */}
           <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/40 z-10 transition-opacity duration-700 group-hover:opacity-0 hidden sm:block" />
@@ -69,9 +69,9 @@ const ProfileImage = memo(() => (
 
 const StatCard = memo(({ icon: Icon, value, label, description, animation }) => (
   <div data-aos={animation} data-aos-duration={1300} className="relative group">
-    <div className="relative z-10 bg-surface rounded-2xl p-6 border border-line overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 hover:shadow-xl h-full flex flex-col justify-between">
+    <div className="relative z-10 bg-surface p-6 border-2 border-fg shadow-md overflow-hidden transition-all duration-150 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-xl h-full flex flex-col justify-between">
       <div className="flex items-center justify-between mb-4">
-        <div className="w-16 h-16 rounded-2xl flex items-center justify-center bg-accent/10 text-accent transition-transform group-hover:rotate-6">
+        <div className="w-16 h-16 flex items-center justify-center bg-nb-yellow border-2 border-fg text-black transition-transform group-hover:rotate-6">
           <Icon className="w-8 h-8" />
         </div>
         <span
@@ -110,6 +110,7 @@ const StatCard = memo(({ icon: Icon, value, label, description, animation }) => 
 ));
 
 const AboutPage = () => {
+  const { t } = useLanguage();
   // Memoized calculations
   const { totalProjects, totalCertificates, YearExperience } = useMemo(() => {
     const storedProjects = JSON.parse(localStorage.getItem("projects") || "[]");
@@ -155,54 +156,51 @@ const AboutPage = () => {
   const statsData = useMemo(() => [
     {
       icon: Code,
-      color: "from-[#6366f1] to-[#a855f7]",
       value: totalProjects,
-      label: "Total Projects",
-      description: "Innovative web solutions crafted",
+      label: t("about.statProjects"),
+      description: t("about.statProjectsDesc"),
       animation: "fade-right",
     },
     {
       icon: Award,
-      color: "from-[#0ea5e9] to-[#3b82f6]",
       value: totalCertificates,
-      label: "Certificates",
-      description: "Professional skills validated",
+      label: t("about.statCertificates"),
+      description: t("about.statCertificatesDesc"),
       animation: "fade-up",
     },
     {
       icon: Globe,
-      color: "from-[#6366f1] to-[#a855f7]",
       value: YearExperience,
-      label: "Years of Experience",
-      description: "Continuous learning journey",
+      label: t("about.statExperience"),
+      description: t("about.statExperienceDesc"),
       animation: "fade-left",
     },
-  ], [totalProjects, totalCertificates, YearExperience]);
+  ], [totalProjects, totalCertificates, YearExperience, t]);
 
   return (
     <div
       className="h-auto pb-[10%] text-fg overflow-hidden px-[5%] sm:px-[5%] lg:px-[10%] mt-10 sm-mt-0"
       id="About"
     >
-      <Header />
+      <Header title={t("about.title")} highlight={t("about.titleHighlight")} subtitle={t("about.subtitle")} />
 
       <div className="w-full mx-auto pt-8 sm:pt-12 relative">
         <div className="flex flex-col-reverse lg:grid lg:grid-cols-2 gap-10 lg:gap-16 items-center">
           <div className="space-y-6 text-center lg:text-left">
-            <h2 
+            <h2
               className="text-3xl sm:text-4xl lg:text-5xl font-bold"
               data-aos="fade-right"
               data-aos-duration="1000"
             >
               <span className="text-accent">
-                Hello, I'm
+                {t("about.greeting")}
               </span>
               <span
                 className="block mt-2 text-fg"
                 data-aos="fade-right"
                 data-aos-duration="1300"
               >
-                Luqman Hakim Ar-Razi
+                {t("about.name")}
               </span>
             </h2>
 
@@ -211,7 +209,7 @@ const AboutPage = () => {
               data-aos="fade-right"
               data-aos-duration="1500"
             >
-            Seorang Siswa lulusan Teknik jaringan komputer dan telekomunikasi, dan juga Mahasiswa Informatika di UII yang menekuni pada bidang Frontend. Saya berfokus menciptakan pengalaman digital yang menarik dan selalu berusaha memberi solusi terbaik pada setiap proyek yang saya kerjakan.
+            {t("about.bio")}
             </p>
 
                {/* Quote Section */}
@@ -231,7 +229,7 @@ const AboutPage = () => {
         </div>
 
         <blockquote className="text-fg text-center lg:text-left italic font-medium text-sm relative z-10 pl-6">
-          "Leveraging AI as a professional tool, not a replacement."
+          {t("about.quote")}
         </blockquote>
       </div>
 
@@ -240,18 +238,18 @@ const AboutPage = () => {
               <button 
                 data-aos="fade-up"
                 data-aos-duration="800"
-                className="w-full lg:w-auto px-4 sm:px-6 py-2 sm:py-3 rounded-lg bg-accent text-accent-fg font-medium transition-all duration-300 hover:bg-accent-strong hover:scale-105 flex items-center justify-center lg:justify-start gap-2 shadow-sm hover:shadow-md "
+                className="nb-press w-full lg:w-auto px-4 sm:px-6 py-2 sm:py-3 bg-nb-blue text-white border-2 border-fg shadow-md font-mono font-bold uppercase tracking-tight flex items-center justify-center lg:justify-start gap-2"
               >
-                <FileText className="w-4 h-4 sm:w-5 sm:h-5" /> Download CV
+                <FileText className="w-4 h-4 sm:w-5 sm:h-5" /> {t("about.downloadCV")}
               </button>
               </a>
               <a href="#Portofolio" className="w-full lg:w-auto">
               <button 
                 data-aos="fade-up"
                 data-aos-duration="1000"
-                className="w-full lg:w-auto px-4 sm:px-6 py-2 sm:py-3 rounded-lg border border-line bg-surface text-fg font-medium transition-all duration-300 hover:scale-105 flex items-center justify-center lg:justify-start gap-2 hover:border-accent/50 hover:text-accent "
+                className="nb-press w-full lg:w-auto px-4 sm:px-6 py-2 sm:py-3 bg-surface text-fg border-2 border-fg shadow-md font-mono font-bold uppercase tracking-tight flex items-center justify-center lg:justify-start gap-2"
               >
-                <Code className="w-4 h-4 sm:w-5 sm:h-5" /> View Projects
+                <Code className="w-4 h-4 sm:w-5 sm:h-5" /> {t("about.viewProjects")}
               </button>
               </a>
             </div>

@@ -11,21 +11,25 @@ import ProjectDetails from "./components/ProjectDetail";
 import WelcomeScreen from "./Pages/WelcomeScreen";
 import { AnimatePresence } from 'framer-motion';
 import NotFoundPage from "./Pages/404";
+import useLanguage from "./components/useLanguage";
 
-const Footer = () => (
-  <footer>
-    <center>
-      <hr className="my-3 border-line sm:mx-auto lg:my-6 text-center" />
-      <span className="block text-sm pb-4 text-muted text-center">
-        © 2026{" "}
-        <a href="www.lhizaa.my.id" className="hover:underline hover:text-accent">
-          LhizaaR™
-        </a>
-        . All Rights Reserved.
-      </span>
-    </center>
-  </footer>
-);
+const Footer = () => {
+  const { t } = useLanguage();
+  return (
+    <footer>
+      <center>
+        <hr className="my-3 border-line sm:mx-auto lg:my-6 text-center" />
+        <span className="block text-sm pb-4 text-muted text-center">
+          © 2026{" "}
+          <a href="www.lhizaa.my.id" className="hover:underline hover:text-accent">
+            LhizaaR™
+          </a>
+          . {t("footer.rights")}
+        </span>
+      </center>
+    </footer>
+  );
+};
 
 const LandingPage = ({ showWelcome, setShowWelcome }) => {
   return (

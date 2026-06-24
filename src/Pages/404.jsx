@@ -1,7 +1,9 @@
 import React from 'react';
 import { Home, ArrowLeft } from 'lucide-react';
+import useLanguage from '../components/useLanguage';
 
 export default function NotFoundPage() {
+  const { t } = useLanguage();
   const handleGoBack = () => {
     window.history.back();
   };
@@ -25,10 +27,10 @@ export default function NotFoundPage() {
         {/* Message */}
         <div className="mb-8">
           <h2 className="text-3xl font-semibold text-fg mb-4">
-            Oops! Halaman Tidak Ditemukan
+            {t('notfound.heading')}
           </h2>
           <p className="text-lg text-muted max-w-md mx-auto leading-relaxed">
-            Halaman yang Anda cari mungkin telah dipindahkan, dihapus, atau tidak pernah ada.
+            {t('notfound.description')}
           </p>
         </div>
 
@@ -46,7 +48,7 @@ export default function NotFoundPage() {
             className="flex items-center gap-2 px-6 py-3 bg-surface border border-line text-fg rounded-lg hover:border-accent/50 transition-colors duration-200 shadow-sm hover:shadow-md"
           >
             <ArrowLeft size={20} />
-            Kembali
+            {t('notfound.back')}
           </button>
 
           <button
@@ -54,7 +56,7 @@ export default function NotFoundPage() {
             className="flex items-center gap-2 px-6 py-3 bg-accent text-accent-fg rounded-lg hover:bg-accent-strong transition-colors duration-200 shadow-sm hover:shadow-md"
           >
             <Home size={20} />
-            Beranda
+            {t('notfound.home')}
           </button>
         </div>
 

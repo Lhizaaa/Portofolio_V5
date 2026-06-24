@@ -9,6 +9,7 @@ import {
 import AOS from "aos";
 import "aos/dist/aos.css";
 import PresenceWidget from "./PresenceWidget";
+import useLanguage from "./useLanguage";
 
 const socialLinks = [
   {
@@ -96,6 +97,7 @@ const socialLinks = [
 ];
 
 const SocialLinks = () => {
+  const { t } = useLanguage();
   const linkedIn = socialLinks.find((link) => link.isPrimary);
   const otherLinks = socialLinks.filter((link) => !link.isPrimary);
   const [instagram, youtube, github, tiktok] = otherLinks;
@@ -114,7 +116,7 @@ const SocialLinks = () => {
         data-aos="fade-down"
       >
         <span className="inline-block w-8 h-1 bg-accent rounded-full"></span>
-        Connect With Me
+        {t("social.connect")}
       </h3>
 
       <div className="flex flex-col gap-4">

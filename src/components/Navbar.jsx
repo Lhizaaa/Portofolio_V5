@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Menu, X, Sun, Moon } from "lucide-react";
 import useTheme from "./useTheme";
+import useLanguage from "./useLanguage";
 
 const ThemeToggle = ({ className = "" }) => {
     const { theme, toggleTheme } = useTheme();
@@ -8,7 +9,7 @@ const ThemeToggle = ({ className = "" }) => {
         <button
             onClick={toggleTheme}
             aria-label="Toggle color theme"
-            className={`relative inline-flex items-center justify-center w-9 h-9 rounded-lg border border-line bg-surface-2 text-fg hover:text-accent hover:border-accent/40 transition-colors duration-300 ${className}`}
+            className={`nb-press relative inline-flex items-center justify-center w-9 h-9 border-2 border-fg bg-nb-yellow text-black shadow-sm ${className}`}
         >
             {theme === "dark" ? (
                 <Sun className="w-[18px] h-[18px]" />
@@ -19,16 +20,32 @@ const ThemeToggle = ({ className = "" }) => {
     );
 };
 
+const LangToggle = ({ className = "" }) => {
+    const { lang, toggleLang } = useLanguage();
+    return (
+        <button
+            onClick={toggleLang}
+            aria-label="Switch language"
+            className={`nb-press relative inline-flex items-center justify-center h-9 px-2 border-2 border-fg bg-surface text-fg shadow-sm font-mono font-bold text-xs tracking-tight ${className}`}
+        >
+            <span className={lang === "id" ? "text-accent" : "text-muted"}>ID</span>
+            <span className="mx-1 text-muted">/</span>
+            <span className={lang === "en" ? "text-accent" : "text-muted"}>EN</span>
+        </button>
+    );
+};
+
 const Navbar = () => {
+    const { t } = useLanguage();
     const [isOpen, setIsOpen] = useState(false);
     const [scrolled, setScrolled] = useState(false);
     const [activeSection, setActiveSection] = useState("Home");
-    
+
     const navItems = [
-        { href: "#Home", label: "Home" },
-        { href: "#About", label: "About" },
-        { href: "#Portofolio", label: "Portofolio" },
-        { href: "#Contact", label: "Contact" },
+        { href: "#Home", label: t("nav.home") },
+        { href: "#About", label: t("nav.about") },
+        { href: "#Portofolio", label: t("nav.portfolio") },
+        { href: "#Contact", label: t("nav.contact") },
     ];
 
     useEffect(() => {
@@ -126,7 +143,7 @@ const Navbar = () => {
                                         {item.label}
                                     </span>
                                     <span
-                                        className={`absolute bottom-0 left-0 w-full h-0.5 bg-accent transform origin-left transition-transform duration-300 ${
+                                        className={`absolute bottom-0 left-0 w-full h-1 bg-accent transform origin-left transition-transform duration-300 ${
                                             activeSection === item.href.substring(1)
                                                 ? "scale-x-100"
                                                 : "scale-x-0 group-hover:scale-x-100"
@@ -134,12 +151,14 @@ const Navbar = () => {
                                     />
                                 </a>
                             ))}
+                            <LangToggle />
                             <ThemeToggle />
                         </div>
                     </div>
 
                     {/* Mobile Menu Button */}
                     <div className="md:hidden flex items-center gap-2">
+                        <LangToggle />
                         <ThemeToggle />
                         <button
                             onClick={() => setIsOpen(!isOpen)}

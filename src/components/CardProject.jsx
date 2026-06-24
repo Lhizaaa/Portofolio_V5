@@ -24,9 +24,9 @@ const CardProject = ({ Img, Title, Description, Link: ProjectLink, id }) => {
   return (
     <div className="group relative w-full">
 
-      <div className="relative overflow-hidden rounded-2xl bg-surface border border-line shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-accent/40 hover:shadow-xl">
+      <div className="relative overflow-hidden bg-surface border-2 border-fg shadow-md transition-all duration-150 hover:-translate-x-0.5 hover:-translate-y-0.5 hover:shadow-xl">
         <div className="relative p-5 z-10">
-          <div className="relative overflow-hidden rounded-lg">
+          <div className="relative overflow-hidden border-2 border-fg">
             <img
               src={Img}
               alt={Title}
@@ -63,7 +63,7 @@ const CardProject = ({ Img, Title, Description, Link: ProjectLink, id }) => {
                 <Link
                   to={`/project/${id}`}
                   onClick={handleDetails}
-                  className="inline-flex items-center space-x-2 px-4 py-2 rounded-lg bg-surface-2 border border-line hover:border-accent/50 text-fg transition-all duration-200 hover:scale-105 active:scale-95 focus:outline-none focus:ring-2 focus:ring-accent/40"
+                  className="nb-press inline-flex items-center space-x-2 px-4 py-2 bg-nb-yellow border-2 border-fg text-black shadow-sm font-mono font-bold uppercase text-xs tracking-tight focus:outline-none"
                 >
                   <span className="text-sm font-medium">Details</span>
                   <ArrowRight className="w-4 h-4" />

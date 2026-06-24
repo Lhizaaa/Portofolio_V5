@@ -3,33 +3,32 @@ import { Github, Linkedin, Mail, ExternalLink, Instagram, Sparkles } from "lucid
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 import CodeShowcase from "../components/CodeShowcase"
+import useLanguage from "../components/useLanguage"
 
 // Memoized Components
-const StatusBadge = memo(() => (
+const StatusBadge = memo(({ label }) => (
   <div className="inline-block animate-float lg:mx-0" data-aos="zoom-in" data-aos-delay="400">
-    <div className="relative group">
-      <div className="relative px-3 sm:px-4 py-2 rounded-full bg-surface border border-line shadow-sm">
-        <span className="text-accent sm:text-sm text-[0.7rem] font-medium flex items-center">
-          <Sparkles className="sm:w-4 sm:h-4 w-3 h-3 mr-2 text-accent" />
-          Ready to Innovate
-        </span>
-      </div>
+    <div className="px-4 py-2 bg-nb-yellow border-2 border-fg shadow-sm w-fit">
+      <span className="text-black font-mono font-bold uppercase tracking-tight sm:text-sm text-[0.7rem] flex items-center">
+        <Sparkles className="sm:w-4 sm:h-4 w-3 h-3 mr-2 text-black" />
+        {label}
+      </span>
     </div>
   </div>
 ));
 
-const MainTitle = memo(() => (
+const MainTitle = memo(({ line1, line2 }) => (
   <div className="space-y-2" data-aos="fade-up" data-aos-delay="600">
     <h1 className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl xl:text-6xl font-bold tracking-tight">
       <span className="relative inline-block">
         <span className="relative text-fg">
-          Frontend Web
+          {line1}
         </span>
       </span>
       <br />
       <span className="relative inline-block mt-2">
-        <span className="relative text-accent">
-          Developer
+        <span className="relative inline-block bg-nb-blue text-white border-2 border-fg shadow-md px-3 py-1">
+          {line2}
         </span>
       </span>
     </h1>
@@ -37,28 +36,21 @@ const MainTitle = memo(() => (
 ));
 
 const TechStack = memo(({ tech }) => (
-  <div className="px-4 py-2 hidden sm:block rounded-full bg-surface-2 border border-line text-sm text-muted hover:text-fg hover:border-accent/40 transition-colors">
+  <div className="px-4 py-2 hidden sm:block bg-surface border-2 border-fg shadow-sm text-sm font-mono font-medium text-fg">
     {tech}
   </div>
 ));
 
-const CTAButton = memo(({ href, text, icon: Icon }) => {
-  const primary = text === "Projects";
+const CTAButton = memo(({ href, label, primary, icon: Icon }) => {
   return (
     <a href={href}>
-      <button className="group relative w-[160px]">
-        <div
-          className={`relative h-11 rounded-lg leading-none overflow-hidden border transition-all duration-300 ${
-            primary
-              ? "bg-accent border-accent text-accent-fg hover:bg-accent-strong"
-              : "bg-surface border-line text-fg hover:border-accent/50"
-          }`}
-        >
-          <span className="absolute inset-0 flex items-center justify-center gap-2 text-sm font-medium group-hover:gap-3 transition-all duration-300">
-            {text}
-            <Icon className={`w-4 h-4 ${text === 'Contact' ? 'group-hover:translate-x-1' : 'group-hover:rotate-45'} transform transition-all duration-300`} />
-          </span>
-        </div>
+      <button
+        className={`nb-press group w-[160px] h-11 border-2 border-fg shadow-md flex items-center justify-center gap-2 font-mono font-bold uppercase text-sm tracking-tight ${
+          primary ? "bg-nb-blue text-white" : "bg-nb-yellow text-black"
+        }`}
+      >
+        {label}
+        <Icon className={`w-4 h-4 ${primary ? 'group-hover:rotate-45' : 'group-hover:translate-x-1'} transform transition-transform duration-300`} />
       </button>
     </a>
   );
@@ -66,10 +58,8 @@ const CTAButton = memo(({ href, text, icon: Icon }) => {
 
 const SocialLink = memo(({ icon: Icon, link }) => (
   <a href={link} target="_blank" rel="noopener noreferrer">
-    <button className="group relative p-3">
-      <div className="relative rounded-xl bg-surface border border-line p-2 flex items-center justify-center group-hover:border-accent/50 transition-all duration-300">
-        <Icon className="w-5 h-5 text-muted group-hover:text-accent transition-colors" />
-      </div>
+    <button className="nb-press bg-surface border-2 border-fg shadow-sm p-2.5 flex items-center justify-center">
+      <Icon className="w-5 h-5 text-fg" />
     </button>
   </a>
 ));
@@ -78,7 +68,6 @@ const SocialLink = memo(({ icon: Icon, link }) => (
 const TYPING_SPEED = 100;
 const ERASING_SPEED = 50;
 const PAUSE_DURATION = 2000;
-const WORDS = ["Network & Telecom Student", "Informatics Student"];
 const TECH_STACK = ["Javascript", "Node.js","React", "HTML", "CSS"];
 const SOCIAL_LINKS = [
   { icon: Github, link: "https://github.com/Lhizaaa" },
@@ -87,6 +76,8 @@ const SOCIAL_LINKS = [
 ];
 
 const Home = () => {
+  const { t } = useLanguage()
+  const WORDS = t("home.roles")
   const [text, setText] = useState("")
   const [isTyping, setIsTyping] = useState(true)
   const [wordIndex, setWordIndex] = useState(0)
@@ -152,8 +143,8 @@ const Home = () => {
               data-aos="fade-right"
               data-aos-delay="200">
               <div className="space-y-3 sm:space-y-4">
-                <StatusBadge />
-                <MainTitle />
+                <StatusBadge label={t("home.badge")} />
+                <MainTitle line1={t("home.title1")} line2={t("home.title2")} />
 
                 {/* Typing Effect */}
                 <div className="h-8 flex items-center" data-aos="fade-up" data-aos-delay="800">
@@ -167,7 +158,7 @@ const Home = () => {
                 <p className="text-base md:text-lg text-muted max-w-xl leading-relaxed font-light"
                   data-aos="fade-up"
                   data-aos-delay="1000">
-                  Menciptakan Website Yang Inovatif, Fungsional, dan User-Friendly untuk Solusi Digital.
+                  {t("home.description")}
                 </p>
 
                 {/* Tech Stack */}
@@ -179,8 +170,8 @@ const Home = () => {
 
                 {/* CTA Buttons */}
                 <div className="flex flex-row gap-3 w-full justify-start" data-aos="fade-up" data-aos-delay="1400">
-                  <CTAButton href="#Portofolio" text="Projects" icon={ExternalLink} />
-                  <CTAButton href="#Contact" text="Contact" icon={Mail} />
+                  <CTAButton href="#Portofolio" label={t("home.projects")} primary icon={ExternalLink} />
+                  <CTAButton href="#Contact" label={t("home.contact")} icon={Mail} />
                 </div>
 
                 {/* Social Links */}
@@ -200,10 +191,7 @@ const Home = () => {
               data-aos-delay="600">
               <div className="relative w-full">
                 {/* Soft ambient backdrop */}
-                <div className={`absolute inset-0 bg-accent/10 rounded-3xl blur-3xl transition-all duration-700 ease-in-out ${
-                  isHovering ? "opacity-50 scale-105" : "opacity-20 scale-100"
-                }`}>
-                </div>
+                <div className="hidden"></div>
 
                 <div className="relative z-10 lg:left-8">
                   <CodeShowcase isHovering={isHovering} />

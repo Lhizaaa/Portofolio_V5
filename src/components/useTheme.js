@@ -7,7 +7,7 @@ import { useEffect, useState, useCallback } from "react";
 const THEME_EVENT = "themechange";
 
 const getInitialTheme = () => {
-  if (typeof document === "undefined") return "dark";
+  if (typeof document === "undefined") return "light";
   return document.documentElement.classList.contains("dark") ? "dark" : "light";
 };
 
@@ -23,7 +23,7 @@ const applyTheme = (theme) => {
   }
 
   const meta = document.querySelector('meta[name="theme-color"]');
-  if (meta) meta.setAttribute("content", theme === "dark" ? "#09090b" : "#fafafa");
+  if (meta) meta.setAttribute("content", theme === "dark" ? "#121210" : "#f5f0e8");
 };
 
 export default function useTheme() {

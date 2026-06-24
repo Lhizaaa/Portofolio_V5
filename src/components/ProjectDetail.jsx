@@ -5,6 +5,7 @@ import {
   ChevronRight, Layers, Layout, Globe, Package, Cpu, Code,
 } from "lucide-react";
 import Swal from 'sweetalert2';
+import useLanguage from './useLanguage';
 
 const TECH_ICONS = {
   React: Globe,
@@ -48,6 +49,7 @@ const FeatureItem = ({ feature }) => {
 };
 
 const ProjectStats = ({ project }) => {
+  const { t } = useLanguage();
   const techStackCount = project?.TechStack?.length || 0;
   const featuresCount = project?.Features?.length || 0;
 
@@ -59,7 +61,7 @@ const ProjectStats = ({ project }) => {
         </div>
         <div className="flex-grow">
           <div className="text-lg md:text-xl font-semibold text-fg">{techStackCount}</div>
-          <div className="text-[10px] md:text-xs text-muted">Total Teknologi</div>
+          <div className="text-[10px] md:text-xs text-muted">{t('project.totalTech')}</div>
         </div>
       </div>
 
@@ -69,21 +71,21 @@ const ProjectStats = ({ project }) => {
         </div>
         <div className="flex-grow">
           <div className="text-lg md:text-xl font-semibold text-fg">{featuresCount}</div>
-          <div className="text-[10px] md:text-xs text-muted">Fitur Utama</div>
+          <div className="text-[10px] md:text-xs text-muted">{t('project.mainFeatures')}</div>
         </div>
       </div>
     </div>
   );
 };
 
-const handleGithubClick = (githubLink) => {
+const handleGithubClick = (githubLink, t) => {
   if (githubLink === 'Private') {
     Swal.fire({
       icon: 'info',
-      title: 'Source Code Private',
-      text: 'Maaf, source code untuk proyek ini bersifat privat.',
-      confirmButtonText: 'Mengerti',
-      confirmButtonColor: '#10b981',
+      title: t('project.privateTitle'),
+      text: t('project.privateText'),
+      confirmButtonText: t('project.privateOk'),
+      confirmButtonColor: '#2563eb',
     });
     return false;
   }
@@ -91,6 +93,7 @@ const handleGithubClick = (githubLink) => {
 };
 
 const ProjectDetails = () => {
+  const { t } = useLanguage();
   const { id } = useParams();
   const navigate = useNavigate();
   const [project, setProject] = useState(null);
@@ -117,7 +120,7 @@ const ProjectDetails = () => {
       <div className="min-h-screen bg-base flex items-center justify-center">
         <div className="text-center space-y-6 animate-fadeIn">
           <div className="w-16 h-16 md:w-24 md:h-24 mx-auto border-4 border-accent/30 border-t-accent rounded-full animate-spin" />
-          <h2 className="text-xl md:text-3xl font-bold text-fg">Loading Project...</h2>
+          <h2 className="text-xl md:text-3xl font-bold text-fg">{t('project.loading')}</h2>
         </div>
       </div>
     );
@@ -142,10 +145,10 @@ const ProjectDetails = () => {
               className="group inline-flex items-center space-x-1.5 md:space-x-2 px-3 md:px-5 py-2 md:py-2.5 bg-surface rounded-xl text-fg hover:border-accent/50 transition-all duration-300 border border-line text-sm md:text-base"
             >
               <ArrowLeft className="w-4 h-4 md:w-5 md:h-5 group-hover:-translate-x-1 transition-transform" />
-              <span>Back</span>
+              <span>{t('project.back')}</span>
             </button>
             <div className="flex items-center space-x-1 md:space-x-2 text-sm md:text-base text-muted">
-              <span>Projects</span>
+              <span>{t('project.projects')}</span>
               <ChevronRight className="w-3 h-3 md:w-4 md:h-4" />
               <span className="text-fg truncate">{project.Title}</span>
             </div>
@@ -180,7 +183,7 @@ const ProjectDetails = () => {
                   className="group relative inline-flex items-center space-x-1.5 md:space-x-2 px-4 md:px-8 py-2.5 md:py-4 bg-accent text-accent-fg hover:bg-accent-strong rounded-xl transition-all duration-300 overflow-hidden text-sm md:text-base"
                 >
                   <ExternalLink className="relative w-4 h-4 md:w-5 md:h-5 group-hover:rotate-12 transition-transform" />
-                  <span className="relative font-medium">Live Demo</span>
+                  <span className="relative font-medium">{t('project.liveDemo')}</span>
                 </a>
 
                 <a
@@ -188,17 +191,17 @@ const ProjectDetails = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="group relative inline-flex items-center space-x-1.5 md:space-x-2 px-4 md:px-8 py-2.5 md:py-4 bg-surface hover:border-accent/50 text-fg rounded-xl transition-all duration-300 border border-line overflow-hidden text-sm md:text-base"
-                  onClick={(e) => !handleGithubClick(project.Github) && e.preventDefault()}
+                  onClick={(e) => !handleGithubClick(project.Github, t) && e.preventDefault()}
                 >
                   <Github className="relative w-4 h-4 md:w-5 md:h-5 group-hover:rotate-12 transition-transform" />
-                  <span className="relative font-medium">Github</span>
+                  <span className="relative font-medium">{t('project.github')}</span>
                 </a>
               </div>
 
               <div className="space-y-4 md:space-y-6">
                 <h3 className="text-lg md:text-xl font-semibold text-fg mt-[3rem] md:mt-0 flex items-center gap-2 md:gap-3">
                   <Code2 className="w-4 h-4 md:w-5 md:h-5 text-accent" />
-                  Technologies Used
+                  {t('project.techUsed')}
                 </h3>
                 {project.TechStack.length > 0 ? (
                   <div className="flex flex-wrap gap-2 md:gap-3">
@@ -207,7 +210,7 @@ const ProjectDetails = () => {
                     ))}
                   </div>
                 ) : (
-                  <p className="text-sm md:text-base text-muted opacity-50">No technologies added.</p>
+                  <p className="text-sm md:text-base text-muted opacity-50">{t('project.noTech')}</p>
                 )}
               </div>
             </div>
@@ -228,7 +231,7 @@ const ProjectDetails = () => {
               <div className="bg-surface rounded-2xl p-8 border border-line space-y-6 hover:border-accent/40 transition-colors duration-300 group">
                 <h3 className="text-xl font-semibold text-fg flex items-center gap-3">
                   <Star className="w-5 h-5 text-accent group-hover:rotate-[20deg] transition-transform duration-300" />
-                  Key Features
+                  {t('project.keyFeatures')}
                 </h3>
                 {project.Features.length > 0 ? (
                   <ul className="list-none space-y-2">
@@ -237,7 +240,7 @@ const ProjectDetails = () => {
                     ))}
                   </ul>
                 ) : (
-                  <p className="text-muted opacity-50">No features added.</p>
+                  <p className="text-muted opacity-50">{t('project.noFeatures')}</p>
                 )}
               </div>
             </div>

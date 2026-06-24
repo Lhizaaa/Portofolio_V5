@@ -16,36 +16,37 @@ import AOS from "aos";
 import "aos/dist/aos.css";
 import Certificate from "../components/Certificate";
 import { Code, Award, Boxes } from "lucide-react";
+import useLanguage from "../components/useLanguage";
 
 
-const ToggleButton = ({ onClick, isShowingMore }) => (
+const ToggleButton = ({ onClick, isShowingMore }) => {
+  const { t } = useLanguage();
+  return (
   <button
     onClick={onClick}
     className="
-      px-3 py-1.5
-      text-muted
-      hover:text-accent
+      nb-press
+      px-4 py-2
+      text-black
       text-sm
-      font-medium
-      transition-all
-      duration-300
-      ease-in-out
+      font-mono
+      font-bold
+      uppercase
+      tracking-tight
       flex
       items-center
       gap-2
-      bg-surface-2
-      hover:bg-surface
-      rounded-md
-      border
-      border-line
-      hover:border-accent/40
+      bg-nb-yellow
+      border-2
+      border-fg
+      shadow-sm
       group
       relative
       overflow-hidden
     "
   >
     <span className="relative z-10 flex items-center gap-2">
-      {isShowingMore ? "See Less" : "See More"}
+      {isShowingMore ? t("portfolio.seeLess") : t("portfolio.seeMore")}
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="16"
@@ -67,7 +68,8 @@ const ToggleButton = ({ onClick, isShowingMore }) => (
     </span>
     <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-accent/60 transition-all duration-300 group-hover:w-full"></span>
   </button>
-);
+  );
+};
 
 
 function TabPanel({ children, value, index, ...other }) {
@@ -119,6 +121,7 @@ const techStacks = [
 
 export default function FullWidthTabs() {
   const theme = useTheme();
+  const { t } = useLanguage();
   const [value, setValue] = useState(0);
   const [projects, setProjects] = useState([]);
   const [certificates, setCertificates] = useState([]);
@@ -197,11 +200,10 @@ export default function FullWidthTabs() {
       {/* Header section - unchanged */}
       <div className="text-center pb-10" data-aos="fade-up" data-aos-duration="1000">
         <h2 className="inline-block text-3xl md:text-5xl font-bold text-center mx-auto text-fg">
-          Portfolio <span className="text-accent">Showcase</span>
+          {t("portfolio.title")} <span className="inline-block bg-nb-yellow text-black border-2 border-fg shadow-sm px-2">{t("portfolio.titleHighlight")}</span>
         </h2>
         <p className="text-muted max-w-2xl mx-auto text-sm md:text-base mt-2">
-          Explore my journey through projects, certifications, and technical expertise. 
-          Each section represents a milestone in my continuous learning path.
+          {t("portfolio.subtitle")}
         </p>
       </div>
 
@@ -275,17 +277,17 @@ export default function FullWidthTabs() {
           >
             <Tab
               icon={<Code className="mb-2 w-5 h-5 transition-all duration-300" />}
-              label="Projects"
+              label={t("portfolio.tabProjects")}
               {...a11yProps(0)}
             />
             <Tab
               icon={<Award className="mb-2 w-5 h-5 transition-all duration-300" />}
-              label="Certificates"
+              label={t("portfolio.tabCertificates")}
               {...a11yProps(1)}
             />
             <Tab
               icon={<Boxes className="mb-2 w-5 h-5 transition-all duration-300" />}
-              label="Tech Stack"
+              label={t("portfolio.tabTech")}
               {...a11yProps(2)}
             />
           </Tabs>
